@@ -57,14 +57,14 @@
             <ul class="nav nav-sidebar">
                 <li <?php if (Route::is('admin.dashboard')){ echo 'class="active"'; } ?>><a href="<?php echo route('admin.dashboard'); ?>"><i class="glyphicon glyphicon-dashboard"></i> Overview</a></li>
                 <li <?php if (Route::is('admin.articles.index')){ echo 'class="active"'; } ?>><a href="<?php echo route('admin.articles.index'); ?>"><i class="glyphicon glyphicon-file"></i> Articles</a></li>
-                <li><a href="#"><i class="glyphicon glyphicon-tags"></i> Taxonomy Units</a></li>
-                <li><a href="#"><i class="glyphicon glyphicon-tag"></i> Taxonomy</a></li>
-                <li><a href="#"><i class="glyphicon glyphicon-picture"></i> Media</a></li>
+                <li <?php if (Route::is('admin.taxonomy.units.index')){ echo 'class="active"'; } ?>><a href="<?php echo route('admin.taxonomy.units.index'); ?>"><i class="glyphicon glyphicon-tags"></i> Taxonomy Units</a></li>
+                <li <?php if (Route::is('admin.taxonomy.index')){ echo 'class="active"'; } ?>><a href="<?php echo route('admin.taxonomy.index'); ?>"><i class="glyphicon glyphicon-tag"></i> Taxonomy</a></li>
+                <li <?php if (Route::is('admin.media.index')){ echo 'class="active"'; } ?>><a href="<?php echo route('admin.media.index'); ?>"><i class="glyphicon glyphicon-picture"></i> Media</a></li>
             </ul>
             <ul class="nav nav-sidebar">
-                <li><a href="">Users</a></li>
-                <li><a href="">Groups</a></li>
-                <li><a href="">Permissions</a></li>
+                <li <?php if (Route::is('admin.users.index')){ echo 'class="active"'; } ?>><a href="<?php echo route('admin.users.index'); ?>"><i class="glyphicon glyphicon-user"></i> Users</a></li>
+                <li <?php if (Route::is('admin.groups.index')){ echo 'class="active"'; } ?>><a href="<?php echo route('admin.groups.index'); ?>"><i class="glyphicon glyphicon-list-alt"></i> Groups</a></li>
+                <li <?php if (Route::is('admin.permissions.index')){ echo 'class="active"'; } ?>><a href="<?php echo route('admin.permissions.index'); ?>"><i class="glyphicon glyphicon-list-alt"></i> Permissions</a></li>
             </ul>
             <ul class="nav nav-sidebar">
                 <li><a href="">Nav item again</a></li>

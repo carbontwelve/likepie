@@ -1,13 +1,12 @@
 <?php namespace App\Controllers\Admin;
 
-use BaseController;
 use View;
 
 /**
- * Class AdminBlogController
+ * Class AdminDashboardController
  * @package App\Controllers\Admin
  */
-class AdminDashboardController extends BaseController {
+class AdminDashboardController extends AdminBaseController {
 
     public function index()
     {

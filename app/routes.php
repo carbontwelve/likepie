@@ -28,9 +28,17 @@ Route::group(array('prefix' => 'admin'), function(){
 
         Route::get('/', array( 'as' => 'admin.dashboard', 'uses' => 'App\Controllers\Admin\AdminDashboardController@index' ));
 
+        Route::resource('users', 'App\Controllers\Admin\AdminUserController');
+        Route::resource('groups', 'App\Controllers\Admin\AdminGroupController');
+        Route::resource('permissions', 'App\Controllers\Admin\AdminPermissionController');
+        Route::resource('media', 'App\Controllers\Admin\AdminMediaController');
+        Route::resource('taxonomy', 'App\Controllers\Admin\AdminTaxonomyController');
+        Route::resource('taxonomy.units', 'App\Controllers\Admin\AdminTaxonomyUnitsController');
+
         Route::get('articles', array('as' => 'admin.articles.index', 'uses' => 'App\Controllers\Admin\AdminBlogController@index'));
         Route::get('articles/create', array('as' => 'admin.articles.create', 'uses' => 'App\Controllers\Admin\AdminBlogController@create'));
         Route::post('articles/store', array('as' => 'admin.articles.store', 'uses' => 'App\Controllers\Admin\AdminBlogController@store'));
         Route::get('articles/{id}/edit', array('as' => 'admin.articles.edit', 'uses' => 'App\Controllers\Admin\AdminBlogController@edit'));
 
     });
+
