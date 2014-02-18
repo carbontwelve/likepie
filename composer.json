@@ -9,7 +9,7 @@
         "laravelbook/ardent": "dev-master",
         "mccool/laravel-auto-presenter": "dev-master",
         "hashids/hashids": "dev-master",
-        "cartalyst/sentry": "3.0.*"
+        "cartalyst/sentry": "2.0.*"
 	},
 	"require-dev": {
 	    "barryvdh/laravel-ide-helper": "1.*",
