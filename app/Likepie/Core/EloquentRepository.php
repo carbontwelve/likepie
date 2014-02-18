@@ -12,17 +12,29 @@ class EloquentRepository
         $this->model = $model;
     }
 
+    /**
+     * Model getter
+     * @return Model|null
+     */
     public function getModel()
     {
         return $this->model;
     }
 
+    /**
+     * Model setter
+     * @param $model
+     */
     public function setModel($model)
     {
         $this->model = $model;
     }
 
-    public function getAll()
+    /**
+     * Return all records in this collection
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public function findAll()
     {
         return $this->model->all();
     }
@@ -40,9 +52,27 @@ class EloquentRepository
      * @param int $id
      * @return \Illuminate\Database\Eloquent\Collection|Model|static
      */
-    public function getById($id)
+    public function findById($id)
     {
         return $this->model->find($id);
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Database\Eloquent\Collection|Model|static
+     */
+    public function findByParentId($id)
+    {
+        return $this->model->where('parent_id', $id)->get();
+    }
+
+    /**
+     * Returns a count of all records in the collection
+     * @return int
+     */
+    public function countAll()
+    {
+        return $this->model->all()->count();
     }
 
     /**
@@ -98,5 +128,4 @@ class EloquentRepository
         $model = $this->getNew($data);
         return $this->storeEloquentModel($model);
     }
-
 }
