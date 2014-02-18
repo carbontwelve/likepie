@@ -1,0 +1,209 @@
+@import url(http://fonts.googleapis.com/css?family=Mate|Quicksand:400,700);
+
+@backgroundBase: #ececec;
+@backgroundDark: #45474a;
+@textDark: #1f1f1f;
+@textMedium: #686b70;
+@textYellow: #ffc000;
+@textGreen: #6ba11d;
+@textLight: #d5d5d5;
+@textBrown: #6F6154;
+
+@maxContentWidth: 640px;
+
+html {
+  background: @backgroundBase;
+  color: @textMedium;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 16px;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Mate', serif;
+  font-weight: normal;
+  color: @textBrown;
+}
+
+hr{
+  height: 1px;
+  background: @textLight;
+  border: none;
+
+  &.w-20{
+    width: 20%;
+  }
+}
+
+header {
+  border-left: 2px solid @textYellow;
+  background: @backgroundDark;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dotted;
+
+  h2{
+    border-bottom: 1px dotted;
+  }
+
+  &:hover {
+    color: @textGreen;
+
+    h2{
+      color: @textGreen;
+    }
+  }
+}
+
+
+/********************************
+ * Table
+ **/
+
+table {
+  width: 100%;
+  margin: 20px 0;
+  font-size: 1em;
+
+  thead {
+    border-top: 1px solid #cdcdcd;
+    border-bottom: 1px solid #cdcdcd;
+
+    th {
+      padding: 10px 5px;
+      text-align: left;
+
+      &.date {
+        width: 200px;
+      }
+    }
+  }
+
+  tbody {
+
+    tr:nth-child(odd) td {
+      background: #fff;
+      border-bottom: 1px solid #cdcdcd;
+    }
+
+    tr:nth-child(even) td {
+      color: #3F4755;
+      border-bottom: 1px solid #cdcdcd;
+    }
+
+    td {
+      padding: 10px 5px;
+    }
+  }
+}
+
+/********************************
+ * Grid System
+ **/
+.grid {
+  width: @maxContentWidth;
+  margin: 0 auto;
+
+  &.grid-4 {
+
+    .col {
+      float: left;
+
+      &.col-4 {
+        width: @maxContentWidth;
+      }
+
+      &.col-3 {
+        width: (@maxContentWidth / 4) * 3;
+      }
+
+      &.col-2 {
+        width: (@maxContentWidth / 4) * 2;
+      }
+
+      &.col-1 {
+        width: (@maxContentWidth / 4);
+      }
+    }
+  }
+}
+
+/********************************
+ * Misc Styles
+ **/
+
+.img-circular {
+  border-radius: 50%;
+}
+
+.panel {
+  display: table;
+
+  .inner {
+    display: table-cell;
+    vertical-align: middle;
+    position: relative;
+  }
+
+  &.main-panel {
+    position: fixed;
+    z-index: 1000;
+    height: 100%;
+    width: 450px;
+    background-size: cover;
+
+    .inner {
+      padding: 0px 60px;
+      text-align: center;
+      background: transparent url('../images/background_bricks.jpg');
+
+      p{
+        color: @textLight;
+        font-size: 0.9em;
+      }
+    }
+  }
+
+  &.content-pane {
+    width: @maxContentWidth;
+    padding: 0 60px;
+    margin-left: 452px;
+
+    .blog-posts-list {
+      padding: 30px 0;
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+          border-bottom: 1px solid #cccccc;
+
+          &:last-child {
+            border-bottom: none;
+          }
+        }
+      }
+
+      .meta{
+        font-size: 0.8em;
+        color: #888;
+      }
+    }
+  }
+
+  footer {
+    display: block;
+    border-top: 3px solid #cccccc;
+
+    .inner {
+      padding: 5px;
+      background: #ccc;
+      font-size: 0.8em;
+      color: #636363;
+    }
+  }
+}
