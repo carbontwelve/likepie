@@ -9,7 +9,8 @@
         "laravelbook/ardent": "dev-master",
         "mccool/laravel-auto-presenter": "dev-master",
         "hashids/hashids": "dev-master",
-        "cartalyst/sentry": "2.0.*"
+        "cartalyst/sentry": "2.0.*",
+        "vespakoen/menu": "dev-master"
 	},
 	"require-dev": {
 	    "barryvdh/laravel-ide-helper": "1.*",

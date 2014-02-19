@@ -8,4 +8,12 @@
     </div>
 </h1>
 
+<?php var_dump( Menu::handler('main')->render() ); ?>
+
+<?php var_dump(Menu::handler('main')
+    ->breadcrumbs()
+    ->setElement('ol')
+    ->addClass('breadcrumb')
+    ->render()); ?>
+
 @stop

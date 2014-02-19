@@ -105,6 +105,7 @@ return array(
         'Barryvdh\Debugbar\ServiceProvider',
         'GrahamCampbell\Markdown\MarkdownServiceProvider',
         'McCool\LaravelAutoPresenter\LaravelAutoPresenterServiceProvider',
+        'Menu\MenuServiceProvider',
     ),
     /*
     |--------------------------------------------------------------------------
@@ -168,8 +169,8 @@ return array(
         'URL'           => 'Illuminate\Support\Facades\URL',
         'Validator'     => 'Illuminate\Support\Facades\Validator',
         'View'          => 'Illuminate\Support\Facades\View',
-        'Markdown'      => 'GrahamCampbell\Markdown\Facades\Markdown'
+        'Markdown'      => 'GrahamCampbell\Markdown\Facades\Markdown',
+        'Menu'          => 'Menu\Menu'
 
     ),
-
 );

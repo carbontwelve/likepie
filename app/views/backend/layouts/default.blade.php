@@ -54,6 +54,7 @@
 
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
+            {{ Menu::handler('main') }}
             <ul class="nav nav-sidebar">
                 <li <?php if (Route::is('admin.dashboard')){ echo 'class="active"'; } ?>><a href="<?php echo route('admin.dashboard'); ?>"><i class="glyphicon glyphicon-dashboard"></i> Overview</a></li>
                 <li <?php if (Route::is('admin.articles.index')){ echo 'class="active"'; } ?>><a href="<?php echo route('admin.articles.index'); ?>"><i class="glyphicon glyphicon-file"></i> Articles</a></li>

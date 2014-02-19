@@ -11,7 +11,7 @@ use View;
  * Class AdminBlogController
  * @package App\Controllers\Admin
  */
-class AdminBlogController extends BaseController {
+class AdminBlogController extends AdminBaseController {
 
 
     /** @var \Likepie\Articles\ArticleRepository  */
