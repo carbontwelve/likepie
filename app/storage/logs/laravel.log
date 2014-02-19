@@ -4283,3 +4283,11 @@ Stack trace:
 Stack trace:
 #0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
 #1 {main} [] []
+[2014-02-18 22:09:27] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'App\Controllers\Admin\AdminBaseController' not found' in /Volumes/Oregano/My Projects/likepie.net/app/controllers/admin/AdminDashboardController.php:9
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-02-19 18:21:49] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'App\Controllers\Admin\AdminBaseController' not found' in /Volumes/Oregano/My Projects/likepie.net/app/controllers/admin/AdminDashboardController.php:9
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
