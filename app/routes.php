@@ -42,3 +42,8 @@ Route::group(array('prefix' => 'admin'), function(){
 
     });
 
+Route::group(array('prefix' => 'auth'), function(){
+
+        Route::get('/login', array('as' => 'auth.login', 'uses' => 'App\Controllers\Auth\UserAuthenticationController@login' ));
+
+    });
