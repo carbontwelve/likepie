@@ -105,6 +105,7 @@ return array(
         'Barryvdh\Debugbar\ServiceProvider',
         'GrahamCampbell\Markdown\MarkdownServiceProvider',
         'McCool\LaravelAutoPresenter\LaravelAutoPresenterServiceProvider',
+        'Way\Generators\GeneratorsServiceProvider'
     ),
     /*
     |--------------------------------------------------------------------------
