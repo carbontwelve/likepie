@@ -3,5 +3,4 @@ composer.lock
 .log
 .DS_Store
 .DS_Store?
-vendor
 laravel.log
