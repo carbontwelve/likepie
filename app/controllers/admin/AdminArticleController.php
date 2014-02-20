@@ -91,4 +91,14 @@ class AdminArticleController extends AdminBaseController {
 
     }
 
+    public function destroy( $id = null)
+    {
+        $article = $this->model->findById($id);
+        //if ( Auth::user()->id != $article->author_id){ return $this->redirectBack(['error' => 'You cant delete an article you didnt create.']); }
+
+        $article->delete();
+
+        return $this->redirectBack(['success' => 'That article was successfully deleted.']);
+    }
+
 }

@@ -13,9 +13,9 @@
         <tr>
             <th style="width:20px;">#</th>
             <th>Title</th>
-            <th style="width:120px;">Published On</th>
-            <th style="width:100px;">Status</th>
-            <th style="width:150px;">Actions</th>
+            <th style="width:120px; text-align: center;">Published On</th>
+            <th style="width:100px; text-align: center;">Status</th>
+            <th style="width:150px; text-align: right;">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -28,9 +28,9 @@
             <tr>
                 <td>{{ $article->id }}</td>
                 <td>{{ $article->title }}</td>
-                <td>{{ $article->published_at }}</td>
-                <td>{{ $article->status }}</td>
-                <td>
+                <td style="text-align: center;">{{ $article->published_at }}</td>
+                <td style="text-align: center;">{{ $article->prettyStatus }}</td>
+                <td style="text-align: right;">
                     <div class="btn-group">
                         <a href="{{ route('admin.articles.edit', $article->id) }}" class="btn btn-info btn-xs">Edit</a>
                         <button type="button" class="btn btn-danger btn-xs">Delete</button>
