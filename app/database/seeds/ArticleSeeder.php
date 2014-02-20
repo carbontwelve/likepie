@@ -47,7 +47,7 @@ class ArticleSeeder extends Seeder {
             }
         }
 
-        $this->command->comment('Inserted ' . $this->articles->getAll()->count() . ' records into table');
+        $this->command->comment('Inserted ' . $this->articles->countAll() . ' records into table');
 
     }
 }

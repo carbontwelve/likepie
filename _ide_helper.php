@@ -1929,6 +1929,26 @@ class Blade extends Illuminate\Support\Facades\Blade{
 	 }
 
 	/**
+	 * Gets the content tags used for the compiler.
+	 *
+	 * @return string
+	 * @static 
+	 */
+	 public static function getContentTags(){
+		return Illuminate\View\Compilers\BladeCompiler::getContentTags();
+	 }
+
+	/**
+	 * Gets the escaped content tags used for the compiler.
+	 *
+	 * @return string
+	 * @static 
+	 */
+	 public static function getEscapedContentTags(){
+		return Illuminate\View\Compilers\BladeCompiler::getEscapedContentTags();
+	 }
+
+	/**
 	 * Create a new compiler instance.
 	 *
 	 * @param \Illuminate\Filesystem\Filesystem  $files
@@ -2097,9 +2117,9 @@ class Cache extends Illuminate\Support\Facades\Cache{
 	/**
 	 * Store an item in the cache.
 	 *
-	 * @param string              $key
-	 * @param mixed               $value
-	 * @param Carbon|Datetime|int $minutes
+	 * @param string  $key
+	 * @param mixed   $value
+	 * @param \DateTime|int  $minutes
 	 * @return void
 	 * @static 
 	 */
@@ -2110,9 +2130,9 @@ class Cache extends Illuminate\Support\Facades\Cache{
 	/**
 	 * Store an item in the cache if the key does not exist.
 	 *
-	 * @param string              $key
-	 * @param mixed               $value
-	 * @param Carbon|Datetime|int $minutes
+	 * @param string  $key
+	 * @param mixed   $value
+	 * @param \DateTime|int  $minutes
 	 * @return bool
 	 * @static 
 	 */
@@ -2123,9 +2143,9 @@ class Cache extends Illuminate\Support\Facades\Cache{
 	/**
 	 * Get an item from the cache, or store the default value.
 	 *
-	 * @param string              $key
-	 * @param Carbon|Datetime|int $minutes
-	 * @param Closure             $callback
+	 * @param string  $key
+	 * @param \DateTime|int  $minutes
+	 * @param Closure  $callback
 	 * @return mixed
 	 * @static 
 	 */
@@ -2236,8 +2256,8 @@ class Cache extends Illuminate\Support\Facades\Cache{
 	/**
 	 * Register a macro with the Cache class.
 	 *
-	 * @param string $name
-	 * @param callable $callback
+	 * @param string    $name
+	 * @param callable  $callback
 	 * @return void
 	 * @static 
 	 */
@@ -2767,6 +2787,16 @@ class DB extends Illuminate\Support\Facades\DB{
 	 }
 
 	/**
+	 * Get a schema builder instance for the connection.
+	 *
+	 * @return \Illuminate\Database\Schema\MySqlBuilder
+	 * @static 
+	 */
+	 public static function getSchemaBuilder(){
+		return Illuminate\Database\MySqlConnection::getSchemaBuilder();
+	 }
+
+	/**
 	 * Set the query grammar to the default implementation.
 	 *
 	 * @return void
@@ -2774,7 +2804,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function useDefaultQueryGrammar(){
 		//Method inherited from Illuminate\Database\Connection
-		 Illuminate\Database\SQLiteConnection::useDefaultQueryGrammar();
+		 Illuminate\Database\MySqlConnection::useDefaultQueryGrammar();
 	 }
 
 	/**
@@ -2785,7 +2815,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function useDefaultSchemaGrammar(){
 		//Method inherited from Illuminate\Database\Connection
-		 Illuminate\Database\SQLiteConnection::useDefaultSchemaGrammar();
+		 Illuminate\Database\MySqlConnection::useDefaultSchemaGrammar();
 	 }
 
 	/**
@@ -2796,18 +2826,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function useDefaultPostProcessor(){
 		//Method inherited from Illuminate\Database\Connection
-		 Illuminate\Database\SQLiteConnection::useDefaultPostProcessor();
-	 }
-
-	/**
-	 * Get a schema builder instance for the connection.
-	 *
-	 * @return \Illuminate\Database\Schema\Builder
-	 * @static 
-	 */
-	 public static function getSchemaBuilder(){
-		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::getSchemaBuilder();
+		 Illuminate\Database\MySqlConnection::useDefaultPostProcessor();
 	 }
 
 	/**
@@ -2819,7 +2838,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function table($table){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::table($table);
+		return Illuminate\Database\MySqlConnection::table($table);
 	 }
 
 	/**
@@ -2831,7 +2850,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function raw($value){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::raw($value);
+		return Illuminate\Database\MySqlConnection::raw($value);
 	 }
 
 	/**
@@ -2844,7 +2863,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function selectOne($query, $bindings = array()){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::selectOne($query, $bindings);
+		return Illuminate\Database\MySqlConnection::selectOne($query, $bindings);
 	 }
 
 	/**
@@ -2857,7 +2876,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function select($query, $bindings = array()){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::select($query, $bindings);
+		return Illuminate\Database\MySqlConnection::select($query, $bindings);
 	 }
 
 	/**
@@ -2870,7 +2889,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function insert($query, $bindings = array()){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::insert($query, $bindings);
+		return Illuminate\Database\MySqlConnection::insert($query, $bindings);
 	 }
 
 	/**
@@ -2883,7 +2902,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function update($query, $bindings = array()){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::update($query, $bindings);
+		return Illuminate\Database\MySqlConnection::update($query, $bindings);
 	 }
 
 	/**
@@ -2896,7 +2915,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function delete($query, $bindings = array()){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::delete($query, $bindings);
+		return Illuminate\Database\MySqlConnection::delete($query, $bindings);
 	 }
 
 	/**
@@ -2909,7 +2928,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function statement($query, $bindings = array()){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::statement($query, $bindings);
+		return Illuminate\Database\MySqlConnection::statement($query, $bindings);
 	 }
 
 	/**
@@ -2922,7 +2941,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function affectingStatement($query, $bindings = array()){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::affectingStatement($query, $bindings);
+		return Illuminate\Database\MySqlConnection::affectingStatement($query, $bindings);
 	 }
 
 	/**
@@ -2934,7 +2953,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function unprepared($query){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::unprepared($query);
+		return Illuminate\Database\MySqlConnection::unprepared($query);
 	 }
 
 	/**
@@ -2946,7 +2965,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function prepareBindings($bindings){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::prepareBindings($bindings);
+		return Illuminate\Database\MySqlConnection::prepareBindings($bindings);
 	 }
 
 	/**
@@ -2959,7 +2978,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function transaction($callback){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::transaction($callback);
+		return Illuminate\Database\MySqlConnection::transaction($callback);
 	 }
 
 	/**
@@ -2970,7 +2989,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function beginTransaction(){
 		//Method inherited from Illuminate\Database\Connection
-		 Illuminate\Database\SQLiteConnection::beginTransaction();
+		 Illuminate\Database\MySqlConnection::beginTransaction();
 	 }
 
 	/**
@@ -2981,7 +3000,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function commit(){
 		//Method inherited from Illuminate\Database\Connection
-		 Illuminate\Database\SQLiteConnection::commit();
+		 Illuminate\Database\MySqlConnection::commit();
 	 }
 
 	/**
@@ -2992,7 +3011,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function rollBack(){
 		//Method inherited from Illuminate\Database\Connection
-		 Illuminate\Database\SQLiteConnection::rollBack();
+		 Illuminate\Database\MySqlConnection::rollBack();
 	 }
 
 	/**
@@ -3004,7 +3023,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function pretend($callback){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::pretend($callback);
+		return Illuminate\Database\MySqlConnection::pretend($callback);
 	 }
 
 	/**
@@ -3018,7 +3037,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function logQuery($query, $bindings, $time = null){
 		//Method inherited from Illuminate\Database\Connection
-		 Illuminate\Database\SQLiteConnection::logQuery($query, $bindings, $time);
+		 Illuminate\Database\MySqlConnection::logQuery($query, $bindings, $time);
 	 }
 
 	/**
@@ -3030,7 +3049,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function listen($callback){
 		//Method inherited from Illuminate\Database\Connection
-		 Illuminate\Database\SQLiteConnection::listen($callback);
+		 Illuminate\Database\MySqlConnection::listen($callback);
 	 }
 
 	/**
@@ -3043,7 +3062,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function getDoctrineColumn($table, $column){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::getDoctrineColumn($table, $column);
+		return Illuminate\Database\MySqlConnection::getDoctrineColumn($table, $column);
 	 }
 
 	/**
@@ -3054,7 +3073,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function getDoctrineSchemaManager(){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::getDoctrineSchemaManager();
+		return Illuminate\Database\MySqlConnection::getDoctrineSchemaManager();
 	 }
 
 	/**
@@ -3065,7 +3084,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function getDoctrineConnection(){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::getDoctrineConnection();
+		return Illuminate\Database\MySqlConnection::getDoctrineConnection();
 	 }
 
 	/**
@@ -3076,7 +3095,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function getPdo(){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::getPdo();
+		return Illuminate\Database\MySqlConnection::getPdo();
 	 }
 
 	/**
@@ -3087,7 +3106,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function getReadPdo(){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::getReadPdo();
+		return Illuminate\Database\MySqlConnection::getReadPdo();
 	 }
 
 	/**
@@ -3099,7 +3118,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function setPdo($pdo){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::setPdo($pdo);
+		return Illuminate\Database\MySqlConnection::setPdo($pdo);
 	 }
 
 	/**
@@ -3111,7 +3130,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function setReadPdo($pdo){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::setReadPdo($pdo);
+		return Illuminate\Database\MySqlConnection::setReadPdo($pdo);
 	 }
 
 	/**
@@ -3122,7 +3141,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function getName(){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::getName();
+		return Illuminate\Database\MySqlConnection::getName();
 	 }
 
 	/**
@@ -3134,7 +3153,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function getConfig($option){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::getConfig($option);
+		return Illuminate\Database\MySqlConnection::getConfig($option);
 	 }
 
 	/**
@@ -3145,7 +3164,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function getDriverName(){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::getDriverName();
+		return Illuminate\Database\MySqlConnection::getDriverName();
 	 }
 
 	/**
@@ -3156,7 +3175,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function getQueryGrammar(){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::getQueryGrammar();
+		return Illuminate\Database\MySqlConnection::getQueryGrammar();
 	 }
 
 	/**
@@ -3168,7 +3187,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function setQueryGrammar($grammar){
 		//Method inherited from Illuminate\Database\Connection
-		 Illuminate\Database\SQLiteConnection::setQueryGrammar($grammar);
+		 Illuminate\Database\MySqlConnection::setQueryGrammar($grammar);
 	 }
 
 	/**
@@ -3179,7 +3198,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function getSchemaGrammar(){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::getSchemaGrammar();
+		return Illuminate\Database\MySqlConnection::getSchemaGrammar();
 	 }
 
 	/**
@@ -3191,7 +3210,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function setSchemaGrammar($grammar){
 		//Method inherited from Illuminate\Database\Connection
-		 Illuminate\Database\SQLiteConnection::setSchemaGrammar($grammar);
+		 Illuminate\Database\MySqlConnection::setSchemaGrammar($grammar);
 	 }
 
 	/**
@@ -3202,7 +3221,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function getPostProcessor(){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::getPostProcessor();
+		return Illuminate\Database\MySqlConnection::getPostProcessor();
 	 }
 
 	/**
@@ -3214,7 +3233,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function setPostProcessor($processor){
 		//Method inherited from Illuminate\Database\Connection
-		 Illuminate\Database\SQLiteConnection::setPostProcessor($processor);
+		 Illuminate\Database\MySqlConnection::setPostProcessor($processor);
 	 }
 
 	/**
@@ -3225,7 +3244,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function getEventDispatcher(){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::getEventDispatcher();
+		return Illuminate\Database\MySqlConnection::getEventDispatcher();
 	 }
 
 	/**
@@ -3237,7 +3256,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function setEventDispatcher($events){
 		//Method inherited from Illuminate\Database\Connection
-		 Illuminate\Database\SQLiteConnection::setEventDispatcher($events);
+		 Illuminate\Database\MySqlConnection::setEventDispatcher($events);
 	 }
 
 	/**
@@ -3248,7 +3267,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function getPaginator(){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::getPaginator();
+		return Illuminate\Database\MySqlConnection::getPaginator();
 	 }
 
 	/**
@@ -3260,7 +3279,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function setPaginator($paginator){
 		//Method inherited from Illuminate\Database\Connection
-		 Illuminate\Database\SQLiteConnection::setPaginator($paginator);
+		 Illuminate\Database\MySqlConnection::setPaginator($paginator);
 	 }
 
 	/**
@@ -3271,7 +3290,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function getCacheManager(){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::getCacheManager();
+		return Illuminate\Database\MySqlConnection::getCacheManager();
 	 }
 
 	/**
@@ -3283,7 +3302,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function setCacheManager($cache){
 		//Method inherited from Illuminate\Database\Connection
-		 Illuminate\Database\SQLiteConnection::setCacheManager($cache);
+		 Illuminate\Database\MySqlConnection::setCacheManager($cache);
 	 }
 
 	/**
@@ -3294,7 +3313,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function pretending(){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::pretending();
+		return Illuminate\Database\MySqlConnection::pretending();
 	 }
 
 	/**
@@ -3305,7 +3324,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function getFetchMode(){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::getFetchMode();
+		return Illuminate\Database\MySqlConnection::getFetchMode();
 	 }
 
 	/**
@@ -3317,7 +3336,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function setFetchMode($fetchMode){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::setFetchMode($fetchMode);
+		return Illuminate\Database\MySqlConnection::setFetchMode($fetchMode);
 	 }
 
 	/**
@@ -3328,7 +3347,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function getQueryLog(){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::getQueryLog();
+		return Illuminate\Database\MySqlConnection::getQueryLog();
 	 }
 
 	/**
@@ -3339,7 +3358,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function flushQueryLog(){
 		//Method inherited from Illuminate\Database\Connection
-		 Illuminate\Database\SQLiteConnection::flushQueryLog();
+		 Illuminate\Database\MySqlConnection::flushQueryLog();
 	 }
 
 	/**
@@ -3350,7 +3369,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function enableQueryLog(){
 		//Method inherited from Illuminate\Database\Connection
-		 Illuminate\Database\SQLiteConnection::enableQueryLog();
+		 Illuminate\Database\MySqlConnection::enableQueryLog();
 	 }
 
 	/**
@@ -3361,7 +3380,18 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function disableQueryLog(){
 		//Method inherited from Illuminate\Database\Connection
-		 Illuminate\Database\SQLiteConnection::disableQueryLog();
+		 Illuminate\Database\MySqlConnection::disableQueryLog();
+	 }
+
+	/**
+	 * Determine whether we're logging queries.
+	 *
+	 * @return bool
+	 * @static 
+	 */
+	 public static function logging(){
+		//Method inherited from Illuminate\Database\Connection
+		return Illuminate\Database\MySqlConnection::logging();
 	 }
 
 	/**
@@ -3372,7 +3402,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function getDatabaseName(){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::getDatabaseName();
+		return Illuminate\Database\MySqlConnection::getDatabaseName();
 	 }
 
 	/**
@@ -3384,7 +3414,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function setDatabaseName($database){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::setDatabaseName($database);
+		return Illuminate\Database\MySqlConnection::setDatabaseName($database);
 	 }
 
 	/**
@@ -3395,7 +3425,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function getTablePrefix(){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::getTablePrefix();
+		return Illuminate\Database\MySqlConnection::getTablePrefix();
 	 }
 
 	/**
@@ -3407,7 +3437,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function setTablePrefix($prefix){
 		//Method inherited from Illuminate\Database\Connection
-		 Illuminate\Database\SQLiteConnection::setTablePrefix($prefix);
+		 Illuminate\Database\MySqlConnection::setTablePrefix($prefix);
 	 }
 
 	/**
@@ -3419,7 +3449,7 @@ class DB extends Illuminate\Support\Facades\DB{
 	 */
 	 public static function withTablePrefix($grammar){
 		//Method inherited from Illuminate\Database\Connection
-		return Illuminate\Database\SQLiteConnection::withTablePrefix($grammar);
+		return Illuminate\Database\MySqlConnection::withTablePrefix($grammar);
 	 }
 
 }
@@ -4302,7 +4332,7 @@ class Eloquent extends Illuminate\Database\Eloquent\Model{
 	/**
 	 * Indicate that the query results should be cached.
 	 *
-	 * @param \Carbon\Carbon|\Datetime|int  $minutes
+	 * @param \DateTime|int  $minutes
 	 * @param string  $key
 	 * @return \Illuminate\Database\Query\Builder|static
 	 * @static 
@@ -8151,7 +8181,7 @@ class Queue extends Illuminate\Support\Facades\Queue{
 	 *
 	 * @param \DateTime|int  $delay
 	 * @param string  $job
-	 * @param mixed  $data
+	 * @param mixed   $data
 	 * @param string  $queue
 	 * @return mixed
 	 * @static 
@@ -8185,8 +8215,8 @@ class Queue extends Illuminate\Support\Facades\Queue{
 	/**
 	 * Push a new an array of jobs onto the queue.
 	 *
-	 * @param array  $jobs
-	 * @param mixed  $data
+	 * @param array   $jobs
+	 * @param mixed   $data
 	 * @param string  $queue
 	 * @return mixed
 	 * @static 
@@ -10319,17 +10349,6 @@ class Route extends Illuminate\Support\Facades\Route{
 
 class Schema extends Illuminate\Support\Facades\Schema{
 	/**
-	 * Create a new database Schema manager.
-	 *
-	 * @param \Illuminate\Database\Connection  $connection
-	 * @return void
-	 * @static 
-	 */
-	 public static function __construct($connection){
-		 Illuminate\Database\Schema\Builder::__construct($connection);
-	 }
-
-	/**
 	 * Determine if the given table exists.
 	 *
 	 * @param string  $table
@@ -10337,7 +10356,19 @@ class Schema extends Illuminate\Support\Facades\Schema{
 	 * @static 
 	 */
 	 public static function hasTable($table){
-		return Illuminate\Database\Schema\Builder::hasTable($table);
+		return Illuminate\Database\Schema\MySqlBuilder::hasTable($table);
+	 }
+
+	/**
+	 * Create a new database Schema manager.
+	 *
+	 * @param \Illuminate\Database\Connection  $connection
+	 * @return void
+	 * @static 
+	 */
+	 public static function __construct($connection){
+		//Method inherited from Illuminate\Database\Schema\Builder
+		 Illuminate\Database\Schema\MySqlBuilder::__construct($connection);
 	 }
 
 	/**
@@ -10349,7 +10380,8 @@ class Schema extends Illuminate\Support\Facades\Schema{
 	 * @static 
 	 */
 	 public static function hasColumn($table, $column){
-		return Illuminate\Database\Schema\Builder::hasColumn($table, $column);
+		//Method inherited from Illuminate\Database\Schema\Builder
+		return Illuminate\Database\Schema\MySqlBuilder::hasColumn($table, $column);
 	 }
 
 	/**
@@ -10361,7 +10393,8 @@ class Schema extends Illuminate\Support\Facades\Schema{
 	 * @static 
 	 */
 	 public static function table($table, $callback){
-		return Illuminate\Database\Schema\Builder::table($table, $callback);
+		//Method inherited from Illuminate\Database\Schema\Builder
+		return Illuminate\Database\Schema\MySqlBuilder::table($table, $callback);
 	 }
 
 	/**
@@ -10373,7 +10406,8 @@ class Schema extends Illuminate\Support\Facades\Schema{
 	 * @static 
 	 */
 	 public static function create($table, $callback){
-		return Illuminate\Database\Schema\Builder::create($table, $callback);
+		//Method inherited from Illuminate\Database\Schema\Builder
+		return Illuminate\Database\Schema\MySqlBuilder::create($table, $callback);
 	 }
 
 	/**
@@ -10384,7 +10418,8 @@ class Schema extends Illuminate\Support\Facades\Schema{
 	 * @static 
 	 */
 	 public static function drop($table){
-		return Illuminate\Database\Schema\Builder::drop($table);
+		//Method inherited from Illuminate\Database\Schema\Builder
+		return Illuminate\Database\Schema\MySqlBuilder::drop($table);
 	 }
 
 	/**
@@ -10395,7 +10430,8 @@ class Schema extends Illuminate\Support\Facades\Schema{
 	 * @static 
 	 */
 	 public static function dropIfExists($table){
-		return Illuminate\Database\Schema\Builder::dropIfExists($table);
+		//Method inherited from Illuminate\Database\Schema\Builder
+		return Illuminate\Database\Schema\MySqlBuilder::dropIfExists($table);
 	 }
 
 	/**
@@ -10407,7 +10443,8 @@ class Schema extends Illuminate\Support\Facades\Schema{
 	 * @static 
 	 */
 	 public static function rename($from, $to){
-		return Illuminate\Database\Schema\Builder::rename($from, $to);
+		//Method inherited from Illuminate\Database\Schema\Builder
+		return Illuminate\Database\Schema\MySqlBuilder::rename($from, $to);
 	 }
 
 	/**
@@ -10417,7 +10454,8 @@ class Schema extends Illuminate\Support\Facades\Schema{
 	 * @static 
 	 */
 	 public static function getConnection(){
-		return Illuminate\Database\Schema\Builder::getConnection();
+		//Method inherited from Illuminate\Database\Schema\Builder
+		return Illuminate\Database\Schema\MySqlBuilder::getConnection();
 	 }
 
 	/**
@@ -10428,7 +10466,8 @@ class Schema extends Illuminate\Support\Facades\Schema{
 	 * @static 
 	 */
 	 public static function setConnection($connection){
-		return Illuminate\Database\Schema\Builder::setConnection($connection);
+		//Method inherited from Illuminate\Database\Schema\Builder
+		return Illuminate\Database\Schema\MySqlBuilder::setConnection($connection);
 	 }
 
 	/**
@@ -10439,7 +10478,8 @@ class Schema extends Illuminate\Support\Facades\Schema{
 	 * @static 
 	 */
 	 public static function blueprintResolver($resolver){
-		 Illuminate\Database\Schema\Builder::blueprintResolver($resolver);
+		//Method inherited from Illuminate\Database\Schema\Builder
+		 Illuminate\Database\Schema\MySqlBuilder::blueprintResolver($resolver);
 	 }
 
 }
@@ -11776,8 +11816,5 @@ class Markdown extends GrahamCampbell\Markdown\Facades\Markdown{
 		return GrahamCampbell\Markdown\Classes\Markdown::render($value);
 	 }
 
-}
-
-class Menu extends Menu\Menu{
 }
 

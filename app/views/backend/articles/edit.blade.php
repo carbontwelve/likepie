@@ -2,36 +2,21 @@
 
 @section('content')
 
-<div style="padding: 30px 0;">
+<h1 class="page-header">
+    Edit Article
+    <div class="pull-right">
+        <a href="{{ route('admin.articles.index') }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> Back to Articles</a>
+    </div>
+</h1>
 
-    <pre><?php var_dump($errors); ?></pre>
+@include('backend.notifications')
 
-    <h2>Create Article</h2>
+<?php echo Form::model($article, array('method' => 'PATCH', 'route' => array('admin.articles.update', 'id' => $article->id))); ?>
 
-    <?php echo Form::model($article, array('route' => array('admin.articles.store'))); ?>
+    @include('backend.articles._form', [ 'buttonText' => 'Update Article' ])
 
-        <?php echo $errors->first('src'); ?>
+<?php echo Form::close(); ?>
 
-        <div class="form-group <?php echo ( $errors->has('title') ? 'error' : '' ); ?>">
-            <label for="title">Title</label>
-            <input name="title" type="title" class="form-control" id="title" value="<?php echo Input::old('title', $article->title) ?>" placeholder="Article Title"/>
-            <?php echo $errors->first('title'); ?>
-        </div>
-
-        <div class="form-group <?php echo ( $errors->has('body') ? 'error' : '' ); ?>" style="height: 322px;overflow: hidden;">
-            <label for="body">Body</label>
-            <div class="toolbar">
-
-            </div>
-            <textarea name="body" data-editor="markdown" rows="15"><?php echo Input::old('body', $article->body) ?></textarea>
-        </div>
-
-        <hr/>
-
-        <button type="submit" class="btn btn-default pull-right">Update</button>
-
-    <?php echo Form::close(); ?>
-</div>
 @stop
 
 {{-- Footer Scripts --}}

@@ -10,7 +10,8 @@
         "mccool/laravel-auto-presenter": "dev-master",
         "hashids/hashids": "dev-master",
         "cartalyst/sentry": "dev-develop",
-        "way/generators": "dev-master"
+        "way/generators": "dev-master",
+        "vespakoen/menu": "dev-master"
 	},
 	"require-dev": {
 	    "barryvdh/laravel-ide-helper": "1.*",

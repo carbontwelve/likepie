@@ -29,11 +29,13 @@ class ArticlePresenter extends BasePresenter
 
     public function published_at()
     {
+        if ($this->resource->published_at === null) { return 'Never'; }
         return $this->resource->published_at->toFormattedDateString();
     }
 
     public function published_ago()
     {
+        if ($this->resource->published_at === null) { return 'Never'; }
         return $this->resource->published_at->diffForHumans();
     }
 }

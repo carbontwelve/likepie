@@ -45,6 +45,20 @@ class Article extends Ardent
         );
     }
 
+    /**
+     * @return array
+     */
+    public function getStatusEnumValuesForArray()
+    {
+        $array = array();
+        $enum  = $this->getStatusEnumValues();
+        foreach ($enum as $value)
+        {
+            $array[$value] = ucfirst($value);
+        }
+        return $array;
+    }
+
     public function hasErrors()
     {
         return count($this->errors()->all());

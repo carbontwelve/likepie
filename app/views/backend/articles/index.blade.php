@@ -11,11 +11,11 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>#</th>
+            <th style="width:20px;">#</th>
             <th>Title</th>
-            <th>Published On</th>
-            <th>Status</th>
-            <th>Actions</th>
+            <th style="width:120px;">Published On</th>
+            <th style="width:100px;">Status</th>
+            <th style="width:150px;">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -24,7 +24,20 @@
             <td colspan="5">No Articles in database yet!</td>
         </tr>
         @else
-
+            @foreach($articles as $article)
+            <tr>
+                <td>{{ $article->id }}</td>
+                <td>{{ $article->title }}</td>
+                <td>{{ $article->published_at }}</td>
+                <td>{{ $article->status }}</td>
+                <td>
+                    <div class="btn-group">
+                        <a href="{{ route('admin.articles.edit', $article->id) }}" class="btn btn-info btn-xs">Edit</a>
+                        <button type="button" class="btn btn-danger btn-xs">Delete</button>
+                    </div>
+                </td>
+            </tr>
+            @endforeach
         @endif
         </tbody>
     </table>
