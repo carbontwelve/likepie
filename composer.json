@@ -30,7 +30,10 @@
         "psr-0": {
             "Likepie": "app/",
             "App/Controllers/Admin": "app/controllers/admin"
-        }
+        },
+        "files": [
+            "app/Likepie/Helpers/FormFunctions.php"
+        ]
 	},
 	"scripts": {
 		"post-install-cmd": [

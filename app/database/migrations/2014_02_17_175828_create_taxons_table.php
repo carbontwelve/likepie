@@ -24,8 +24,10 @@ class CreateTaxonsTable extends Migration {
                 $table->timestamps();
                 $table->softDeletes();
                 $table->string('name');
+                $table->string('slug');
                 $table->text('description');
                 $table->integer('use_count')
+                    ->unsigned()
                     ->defaults(0);
             });
 	}

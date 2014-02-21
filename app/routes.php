@@ -22,7 +22,8 @@
 |
 */
 
-Route::get('/', array('as' => 'home', 'uses' => 'BlogController@homepage'));
+Route::get('/', array('as' => 'home', 'uses' => 'ArticleController@homepage'));
+Route::get('/article/{slug}', array('as' => 'article', 'uses' => 'ArticleController@viewBySlug'));
 
 Route::group(array('prefix' => 'admin'), function(){
 

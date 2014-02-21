@@ -11,10 +11,10 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th style="width:20px;">#</th>
-            <th>Title</th>
-            <th style="width:120px; text-align: center;">Published On</th>
-            <th style="width:100px; text-align: center;">Status</th>
+            <th style="width:60px;">{{ link_to_sort_column_by('id', 'admin.articles.index', '#') }}</th>
+            <th>{{ link_to_sort_column_by('title', 'admin.articles.index', 'Title') }}</th>
+            <th style="width:140px; text-align: center;">{{ link_to_sort_column_by('published_at', 'admin.articles.index', 'Published On') }}</th>
+            <th style="width:100px; text-align: center;">{{ link_to_sort_column_by('status', 'admin.articles.index', 'Status') }}</th>
             <th style="width:150px; text-align: right;">Actions</th>
         </tr>
         </thead>
@@ -41,5 +41,8 @@
         @endif
         </tbody>
     </table>
+
+    {{ $articles->appends( Request::only(['sortBy', 'direction']) )->links() }}
+
 </div>
 @stop

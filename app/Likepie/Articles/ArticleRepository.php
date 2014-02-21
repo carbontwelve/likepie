@@ -12,15 +12,34 @@ class ArticleRepository extends EloquentRepository
 
     /**
      * Return a paginated record set
-     * @param int $perPage
+     * @param array $params
      * @return mixed
      */
-    public function getPaginated( $perPage = 10 )
+    public function getPaginated( array $params )
     {
+        if ($this->isSortable($params))
+        {
+            return $this->model->with(['author'])
+                ->orderBy($params['sortBy'], $params['direction'])
+                ->paginate();
+        }
+
+        if ($this->isFilterable($params))
+        {
+            return $this->model->with(['author'])
+                ->where(function($query) use ($params){
+                        foreach ($params['where'] as $where)
+                        {
+                            $query->where($where['column'], $where['is']);
+                        }
+                    })
+                ->orderBy('published_at', 'desc')
+                ->paginate();
+        }
+
         return $this->model->with(['author'])
-            //->where('status', Article::STATUS_PUBLISHED)
             ->orderBy('published_at', 'desc')
-            ->paginate($perPage);
+            ->paginate();
     }
 
     public function getBySlug($slug)
@@ -48,6 +67,29 @@ class ArticleRepository extends EloquentRepository
     private function getArticleByTagsQuery($tags)
     {
 
+    }
+
+    /**
+     * @param array $params
+     * @return bool
+     */
+    private function isSortable( array $params )
+    {
+        if (isset($params['sortBy']) && isset($params['direction']))
+        {
+            return ($params['sortBy'] && $params['direction']);
+        }
+
+        return false;
+    }
+
+    /**
+     * @param array $params
+     * @return bool
+     */
+    private function isFilterable( array $params )
+    {
+        return isset($params['where']);
     }
 
 }

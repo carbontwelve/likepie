@@ -11818,3 +11818,6 @@ class Markdown extends GrahamCampbell\Markdown\Facades\Markdown{
 
 }
 
+class Menu extends Menu\Menu{
+}
+

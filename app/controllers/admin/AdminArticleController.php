@@ -23,7 +23,10 @@ class AdminArticleController extends AdminBaseController {
 
     public function index()
     {
-        $articles = $this->model->getPaginated();
+        $sortBy    = \Request::get('sortBy');
+        $direction = \Request::get('direction');
+
+        $articles  = $this->model->getPaginated(compact('sortBy', 'direction'));
 
         return View::make('backend.articles.index')
             ->with('articles', $articles);
