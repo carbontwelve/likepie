@@ -16,13 +16,18 @@
 </div>
 
 <div class="form-group">
-
     {{ Form::label('status', 'Status') }}
     {{ Form::select('status', $statuses ) }}
-
 </div>
 
-
+<div class="form-group">
+    {{ Form::label('category', 'Category') }}
+    <br/>
+    @foreach($categories as $id => $category)
+    {{ Form::label('categories['.$id.']', $category) }}
+    {{ Form::checkbox('categories['.$id.']', $id); }}
+    @endforeach
+</div>
 
 <hr/>
 

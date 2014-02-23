@@ -55,6 +55,9 @@ class AdminArticleController extends AdminBaseController {
 
     public function store()
     {
+
+        dd(Input::all());
+
         $form = $this->model->getForm();
 
         if ( ! $form->isValid()) {
