@@ -19,8 +19,6 @@ class AdminBaseController extends BaseController {
 
     public function __construct()
     {
-        parent::__construct();
-
         Menu::handler('main')->hydrate(function()
             {
 
@@ -54,6 +52,7 @@ class AdminBaseController extends BaseController {
             }
         )->addClass('nav nav-sidebar');
 
+        parent::__construct();
     }
 
 }

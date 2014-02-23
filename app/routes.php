@@ -34,20 +34,14 @@ Route::group(array('prefix' => 'admin'), function(){
         Route::resource('permissions', 'App\Controllers\Admin\AdminPermissionController');
         Route::resource('media', 'App\Controllers\Admin\AdminMediaController');
         Route::resource('taxonomy', 'App\Controllers\Admin\AdminTaxonomyController');
-        Route::resource('taxonomy.units', 'App\Controllers\Admin\AdminTaxonomyUnitsController');
+        Route::resource('taxons', 'App\Controllers\Admin\AdminTaxonController');
         Route::resource('articles', 'App\Controllers\Admin\AdminArticleController');
-
-        /*
-        Route::get('articles', array('as' => 'admin.articles.index', 'uses' => 'App\Controllers\Admin\AdminBlogController@index'));
-        Route::get('articles/create', array('as' => 'admin.articles.create', 'uses' => 'App\Controllers\Admin\AdminBlogController@create'));
-        Route::post('articles/store', array('as' => 'admin.articles.store', 'uses' => 'App\Controllers\Admin\AdminBlogController@store'));
-        Route::get('articles/{id}/edit', array('as' => 'admin.articles.edit', 'uses' => 'App\Controllers\Admin\AdminBlogController@edit'));
-        */
 
     });
 
 Route::group(array('prefix' => 'auth'), function(){
 
-        Route::get('/login', array('as' => 'auth.login', 'uses' => 'App\Controllers\Auth\UserAuthenticationController@login' ));
+        Route::get('/login', array('as' => 'auth.login', 'uses' => 'App\Controllers\Auth\UserSessionController@create' ));
+        Route::get('/logout', array('as' => 'auth.login', 'uses' => 'App\Controllers\Auth\UserSessionController@destroy' ));
 
     });

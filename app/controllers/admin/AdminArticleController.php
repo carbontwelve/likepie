@@ -17,8 +17,8 @@ class AdminArticleController extends AdminBaseController {
 
     public function __construct( ArticleRepository $model )
     {
-
         $this->model = $model;
+        parent::__construct();
     }
 
     public function index()

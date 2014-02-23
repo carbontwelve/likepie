@@ -10,4 +10,9 @@ class TaxonomyRepository extends EloquentRepository
         $this->model = $model;
     }
 
+    public function getForm()
+    {
+        return new TaxonomyForm();
+    }
+
 }

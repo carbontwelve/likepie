@@ -58,8 +58,8 @@
             <ul class="nav nav-sidebar">
                 <li <?php if (Route::is('admin.dashboard')){ echo 'class="active"'; } ?>><a href="<?php echo route('admin.dashboard'); ?>"><i class="glyphicon glyphicon-dashboard"></i> Overview</a></li>
                 <li <?php if (Route::is('admin.articles.index')){ echo 'class="active"'; } ?>><a href="<?php echo route('admin.articles.index'); ?>"><i class="glyphicon glyphicon-file"></i> Articles</a></li>
-                <li <?php if (Route::is('admin.taxonomy.units.index')){ echo 'class="active"'; } ?>><a href="<?php echo route('admin.taxonomy.units.index'); ?>"><i class="glyphicon glyphicon-tags"></i> Taxonomy Units</a></li>
-                <li <?php if (Route::is('admin.taxonomy.index')){ echo 'class="active"'; } ?>><a href="<?php echo route('admin.taxonomy.index'); ?>"><i class="glyphicon glyphicon-tag"></i> Taxonomy</a></li>
+                <li <?php if (Route::is('admin.taxonomy.index')){ echo 'class="active"'; } ?>><a href="<?php echo route('admin.taxonomy.index'); ?>"><i class="glyphicon glyphicon-tags"></i> Taxonomy</a></li>
+                <li <?php if (Route::is('admin.taxons.index')){ echo 'class="active"'; } ?>><a href="<?php echo route('admin.taxons.index'); ?>"><i class="glyphicon glyphicon-tag"></i> Taxons</a></li>
                 <li <?php if (Route::is('admin.media.index')){ echo 'class="active"'; } ?>><a href="<?php echo route('admin.media.index'); ?>"><i class="glyphicon glyphicon-picture"></i> Media</a></li>
             </ul>
             <ul class="nav nav-sidebar">
