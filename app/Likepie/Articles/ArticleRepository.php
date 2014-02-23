@@ -59,6 +59,15 @@ class ArticleRepository extends EloquentRepository
             ->paginate($perPage);
     }
 
+    public function findByTaxonomy($taxonomy)
+    {
+        return $this->model->whereHas('taxonomy', function($q)
+            {
+                //$q->where('content', 'like', 'foo%');
+
+            })->get();
+    }
+
     public function getForm()
     {
         return new ArticleForm();

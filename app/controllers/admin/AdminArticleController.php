@@ -2,6 +2,8 @@
 
 use Likepie\Articles\ArticleRepository;
 use Input;
+use Likepie\Classification\Taxonomy\TaxonomyRepository;
+use Likepie\Classification\Taxons\TaxonRepository;
 use View;
 
 /**
@@ -14,11 +16,23 @@ class AdminArticleController extends AdminBaseController {
      * @var ArticleRepository
      */
     protected $model;
+    /**
+     * @var \Likepie\Classification\Taxons\TaxonRepository
+     */
+    protected $taxons;
 
-    public function __construct( ArticleRepository $model )
+    /** @var array */
+    protected $availableCategories;
+
+    public function __construct( ArticleRepository $model, TaxonRepository $taxons )
     {
-        $this->model = $model;
+        $this->model               = $model;
+        $this->taxons              = $taxons;
+        $this->availableCategories = $this->taxons->findByTaxonomy('tag')
+            ->lists('name', 'id');
+
         parent::__construct();
+
     }
 
     public function index()
@@ -35,6 +49,7 @@ class AdminArticleController extends AdminBaseController {
     public function create()
     {
         return View::make('backend.articles.create')
+            ->with('categories', $this->availableCategories)
             ->with('statuses', $this->model->getModel()->getStatusEnumValuesForArray() );
     }
 
@@ -67,7 +82,13 @@ class AdminArticleController extends AdminBaseController {
     {
         $article  = $this->model->findById($id);
         $statuses = $this->model->getModel()->getStatusEnumValuesForArray();
-        return View::make('backend.articles.edit', ['article' => $article, 'statuses' => $statuses] );
+        return View::make('backend.articles.edit',
+            [
+                'article' => $article,
+                'categories' => $this->availableCategories,
+                'statuses' => $statuses
+            ]
+        );
     }
 
     public function update($id = null)

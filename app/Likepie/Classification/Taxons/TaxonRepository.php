@@ -28,13 +28,20 @@ class TaxonRepository extends EloquentRepository
                             $query->where($where['column'], $where['is']);
                         }
                     })
-                ->orderBy('published_at', 'desc')
                 ->paginate();
         }
 
         return $this->model->with(['author'])
-            ->orderBy('published_at', 'desc')
             ->paginate();
+    }
+
+    public function findByTaxonomy($taxonomy)
+    {
+        return $this->model->whereHas('taxonomy', function($q) use ($taxonomy)
+            {
+                $q->where('name', $taxonomy);
+
+            })->get();
     }
 
     public function getForm()
