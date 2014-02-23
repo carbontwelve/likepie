@@ -5,7 +5,7 @@
 <h1 class="page-header">
     Create Taxonomy
     <div class="pull-right">
-        <a href="{{ route('admin.articles.index') }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> Back to Articles</a>
+        <a href="{{ route('admin.articles.index') }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> Back to Taxonomy</a>
     </div>
 </h1>
 

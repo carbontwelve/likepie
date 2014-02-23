@@ -76,6 +76,16 @@ class EloquentRepository
     }
 
     /**
+     * @param string $column
+     * @param string $key
+     * @return array
+     */
+    public function getList($column, $key = null)
+    {
+        return $this->model->lists($column, $key);
+    }
+
+    /**
      * @param array $attributes
      * @return Model|static
      */

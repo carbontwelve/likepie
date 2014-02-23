@@ -1,4 +1,4 @@
-<?php namespace Likepie\Taxons;
+<?php namespace Likepie\Classification\Taxons;
 
 use LaravelBook\Ardent\Ardent;
 use Closure;
@@ -11,16 +11,17 @@ class Taxon extends Ardent
 
     protected $with        = ['author', 'taxonomy'];
 
-    protected $fillable    = ['author_id', 'name'];
+    protected $fillable    = ['author_id', 'taxonomic_unit_id', 'name', 'description'];
 
     protected $softDelete  = true;
 
-    public $presenter      = 'Likepie\Taxonomy\TaxonomyPresenter';
+    public $presenter      = 'Likepie\Classification\Taxons\TaxonPresenter';
 
     public static $rules  = [
-        'author_id'   => 'required|exists:users,id',
-        'name'        => 'required',
-        'description' => 'alpha_num'
+        'author_id'         => 'required|exists:users,id',
+        'name'              => 'required',
+        'taxonomic_unit_id' => 'required',
+        'description'       => 'alpha_num'
     ];
 
     /**
