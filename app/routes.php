@@ -34,7 +34,9 @@ Route::group(array('prefix' => 'admin'), function(){
         Route::resource('permissions', 'App\Controllers\Admin\AdminPermissionController');
         Route::resource('media', 'App\Controllers\Admin\AdminMediaController');
         Route::resource('taxonomy', 'App\Controllers\Admin\AdminTaxonomyController');
+        Route::get('taxonomy/{id}/delete', [ 'as' => 'admin.taxonomy.delete', 'uses' => 'App\Controllers\Admin\AdminTaxonomyController@destroy'] );
         Route::resource('taxons', 'App\Controllers\Admin\AdminTaxonController');
+        Route::get('taxons/{id}/delete', [ 'as' => 'admin.taxons.delete', 'uses' => 'App\Controllers\Admin\AdminTaxonController@destroy'] );
         Route::resource('articles', 'App\Controllers\Admin\AdminArticleController');
 
     });

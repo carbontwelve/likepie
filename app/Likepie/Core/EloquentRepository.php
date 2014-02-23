@@ -138,4 +138,27 @@ class EloquentRepository
         $model = $this->getNew($data);
         return $this->storeEloquentModel($model);
     }
+
+    /**
+     * @param array $params
+     * @return bool
+     */
+    protected function isSortable( array $params )
+    {
+        if (isset($params['sortBy']) && isset($params['direction']))
+        {
+            return ($params['sortBy'] && $params['direction']);
+        }
+
+        return false;
+    }
+
+    /**
+     * @param array $params
+     * @return bool
+     */
+    protected function isFilterable( array $params )
+    {
+        return isset($params['where']);
+    }
 }

@@ -31,4 +31,9 @@ class Taxonomy extends Ardent
         return $this->belongsTo('Likepie\Accounts\User', 'author_id');
     }
 
+    public function taxons()
+    {
+        return $this->hasMany('Likepie\Classification\Taxons\Taxon', 'taxonomic_unit_id');
+    }
+
 }

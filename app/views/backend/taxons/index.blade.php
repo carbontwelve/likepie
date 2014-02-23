@@ -8,6 +8,8 @@
     </div>
 </h1>
 
+@include('backend.notifications')
+
 <table class="table table-striped">
     <thead>
     <tr>
@@ -31,7 +33,7 @@
         <td style="text-align: right;">
             <div class="btn-group">
                 <a href="{{ route('admin.taxons.edit', $taxon->id) }}" class="btn btn-info btn-xs">Edit</a>
-                <button type="button" class="btn btn-danger btn-xs">Delete</button>
+                <a href="{{ route('admin.taxons.delete', $taxon->id) }}" class="btn btn-danger btn-xs">Delete</a>
             </div>
         </td>
     </tr>

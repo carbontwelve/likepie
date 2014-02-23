@@ -69,27 +69,4 @@ class ArticleRepository extends EloquentRepository
 
     }
 
-    /**
-     * @param array $params
-     * @return bool
-     */
-    private function isSortable( array $params )
-    {
-        if (isset($params['sortBy']) && isset($params['direction']))
-        {
-            return ($params['sortBy'] && $params['direction']);
-        }
-
-        return false;
-    }
-
-    /**
-     * @param array $params
-     * @return bool
-     */
-    private function isFilterable( array $params )
-    {
-        return isset($params['where']);
-    }
-
 }

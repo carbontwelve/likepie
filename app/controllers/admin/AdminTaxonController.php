@@ -29,7 +29,10 @@ class AdminTaxonController extends AdminBaseController {
 
     public function index()
     {
-        $taxons = $this->model->getAllPaginated();
+        $sortBy    = \Request::get('sortBy');
+        $direction = \Request::get('direction');
+
+        $taxons    = $this->model->getPaginated(compact('sortBy', 'direction'));
 
         return View::make('backend.taxons.index')
             ->with('taxons', $taxons);

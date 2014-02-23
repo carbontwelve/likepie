@@ -8,11 +8,14 @@
     </div>
 </h1>
 
+@include('backend.notifications')
+
 <table class="table table-striped">
     <thead>
     <tr>
         <th style="width:60px;">{{ link_to_sort_column_by('id', 'admin.taxonomy.index', '#') }}</th>
         <th>{{ link_to_sort_column_by('name', 'admin.taxonomy.index', 'Name') }}</th>
+        <th style="width: 100px">Taxons</th>
         <th style="width:150px; text-align: right;">Actions</th>
     </tr>
     </thead>
@@ -26,10 +29,11 @@
     <tr>
         <td>{{ $taxonomyUnit->id }}</td>
         <td>{{ $taxonomyUnit->name }}</td>
+        <td>{{ $taxonomyUnit->taxons->count() }}</td>
         <td style="text-align: right;">
             <div class="btn-group">
                 <a href="{{ route('admin.taxonomy.edit', $taxonomyUnit->id) }}" class="btn btn-info btn-xs">Edit</a>
-                <button type="button" class="btn btn-danger btn-xs">Delete</button>
+                <a href="{{ route('admin.taxonomy.delete', $taxonomyUnit->id) }}" class="btn btn-danger btn-xs">Delete</a>
             </div>
         </td>
     </tr>
