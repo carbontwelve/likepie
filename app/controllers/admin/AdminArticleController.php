@@ -1,9 +1,10 @@
 <?php namespace App\Controllers\Admin;
 
-use Likepie\Articles\ArticleRepository;
-use Input;
 use Likepie\Classification\Taxonomy\TaxonomyRepository;
 use Likepie\Classification\Taxons\TaxonRepository;
+use Likepie\Articles\ArticleRepository;
+use Likepie\Articles\ArticleCreator;
+use Input;
 use View;
 
 /**
@@ -24,15 +25,18 @@ class AdminArticleController extends AdminBaseController {
     /** @var array */
     protected $availableCategories;
 
-    public function __construct( ArticleRepository $model, TaxonRepository $taxons )
+    public function __construct( 
+        ArticleRepository $model,
+        ArticleCreator $articleCreator,
+        TaxonRepository $taxons )
     {
         $this->model               = $model;
         $this->taxons              = $taxons;
+        $this->articleCreator      = $articleCreator;
         $this->availableCategories = $this->taxons->findByTaxonomy('tag')
             ->lists('name', 'id');
 
         parent::__construct();
-
     }
 
     public function index()
@@ -61,7 +65,7 @@ class AdminArticleController extends AdminBaseController {
         $form = $this->model->getForm();
 
         if ( ! $form->isValid()) {
-            return $this->redirectBack(['errors' => $form->getErrors()]);
+            return $this->onValidationError($form->getErrors());
         }
 
         $article = $this->model->getNew(Input::only('title', 'content', 'status'));
@@ -69,16 +73,31 @@ class AdminArticleController extends AdminBaseController {
         //$article->author_id = Auth::user()->id;
 
         if ( ! $article->save()) {
-            return $this->redirectBack(['error' => 'There was a problem saving that form']);
+            return $this->onFormError();
         }
 
         // Store tags
         //$tags = $this->tags->getTagsByIds(Input::get('tags'));
         //$article->tags()->sync($tags->lists('id'));
 
+        return $this->onFormSuccess($article);
+
+    }
+    
+    public function onValidationError($errors)
+    {
+        return $this->redirectBack(['errors' => errors]);
+    }
+    
+    public function onFormError()
+    {
+        return $this->redirectBack(['error' => 'There was a problem saving that form']);
+    }
+    
+    public function onFormSuccess( $article )
+    {
         return $this->redirectToRoute('admin.articles.edit', ['id' => $article->id])
             ->with('success', 'Article has been saved successfully');
-
     }
 
     public function edit($id = null)
