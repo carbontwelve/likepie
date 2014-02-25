@@ -73,6 +73,11 @@ class Article extends Ardent
         return $this->belongsTo('Likepie\Accounts\User', 'author_id');
     }
 
+    public function categories()
+    {
+        //return $this->belongsToMany('Likepie\Tags\Tag', 'article_tag', 'article_id', 'tag_id');
+    }
+
     /**
      * Actions to undertake on a save event
      */

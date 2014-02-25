@@ -44,6 +44,12 @@ class TaxonRepository extends EloquentRepository
             })->get();
     }
 
+    public function findByIds($ids)
+    {
+        if ( ! $ids) return null;
+        return $this->model->whereIn('id', $ids)->get();
+    }
+
     public function getForm()
     {
         return new TaxonForm();
