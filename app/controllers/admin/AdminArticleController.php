@@ -1,6 +1,7 @@
 <?php namespace App\Controllers\Admin;
 
 use Likepie\Classification\Category;
+use Likepie\Classification\CategoryRepository;
 use Likepie\Classification\Taxonomy\TaxonomyRepository;
 use Likepie\Classification\Taxons\TaxonRepository;
 use Likepie\Articles\ArticleRepository;
@@ -35,23 +36,19 @@ class AdminArticleController extends AdminBaseController {
         ArticleRepository $model,
         ArticleCreator $articleCreator,
         TaxonRepository $taxons,
-        Category $category )
+        CategoryRepository $category )
     {
         $this->model               = $model;
         $this->taxons              = $taxons;
         $this->articleCreator      = $articleCreator;
-        $this->availableCategories = $this->taxons->findByTaxonomy('category')
-            ->lists('name', 'id');
-
-        $this->category = $category;
+        $this->category            = $category;
+        $this->availableCategories = $this->category->findAll()->lists('name', 'id');
 
         parent::__construct();
-
     }
 
     public function index()
     {
-
         $sortBy    = \Request::get('sortBy');
         $direction = \Request::get('direction');
 
