@@ -1,11 +1,15 @@
 <?php namespace Likepie\Classification\Taxons;
 
+use Likepie\Classification\Taxonomy\Taxonomy;
 use LaravelBook\Ardent\Ardent;
 use Closure;
+use Cache;
 use Str;
 
 class Taxon extends Ardent
 {
+
+    const TAXONOMY_NAME    = 'Any';
 
     protected $table       = 'taxons';
 
@@ -51,4 +55,53 @@ class Taxon extends Ardent
         return $this->belongsTo('Likepie\Classification\Taxonomy\Taxonomy', 'taxonomic_unit_id');
     }
 
+    /**
+     * Limit Taxons to Just those with taxonomy of name
+     *
+     * @param bool $excludeDeleted
+     * @return \Illuminate\Database\Eloquent\Builder
+     * @throws \Exception
+     */
+    public function newQuery($excludeDeleted = true)
+    {
+        $query = parent::newQuery($excludeDeleted);
+
+        // If this is a Taxon request and not by specific taxonomy type
+        if (static::TAXONOMY_NAME === 'Any')
+        {
+            return $query;
+        }
+
+        $cacheKey = $this->getCacheKey();
+
+        if ( ! Cache::has( $cacheKey ))
+        {
+            $provider = new Taxonomy();
+            $taxonomyUnitId = $provider->newQuery()->where( 'name', static::TAXONOMY_NAME )->first(array('id'));
+
+            if ( is_null($taxonomyUnitId) )
+            {
+                throw new \Exception('A taxonomy with the name [' . static::TAXONOMY_NAME . '] does not exist in the taxonomy table.');
+            }
+
+            $taxonomyUnitId = $taxonomyUnitId->id;
+
+            Cache::put($cacheKey, $taxonomyUnitId, 40320);
+
+        }else{
+            $taxonomyUnitId = Cache::get( $cacheKey );
+        }
+
+        $query->where('taxonomic_unit_id', '=', $taxonomyUnitId);
+        return $query;
+    }
+
+    /**
+     * Generate the cache key for the taxon's taxonomy id
+     * @return string
+     */
+    protected function getCacheKey()
+    {
+        return 'taxonomy_' . static::TAXONOMY_NAME . '_id';
+    }
 }
