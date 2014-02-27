@@ -2,6 +2,7 @@
 
 use Likepie\Classification\Category;
 use Likepie\Classification\CategoryRepository;
+use Likepie\Classification\TagRepository;
 use Likepie\Classification\Taxonomy\TaxonomyRepository;
 use Likepie\Classification\Taxons\TaxonRepository;
 use Likepie\Articles\ArticleRepository;
@@ -31,17 +32,23 @@ class AdminArticleController extends AdminBaseController {
      * @var \Likepie\Classification\Category
      */
     private $category;
+    /**
+     * @var \Likepie\Classification\TagRepository
+     */
+    private $tags;
 
     public function __construct(
         ArticleRepository $model,
         ArticleCreator $articleCreator,
         TaxonRepository $taxons,
+        TagRepository $tags,
         CategoryRepository $category )
     {
         $this->model               = $model;
         $this->taxons              = $taxons;
         $this->articleCreator      = $articleCreator;
         $this->category            = $category;
+        $this->tags                = $tags;
         $this->availableCategories = $this->category->findAll()->lists('name', 'id');
 
         parent::__construct();
@@ -82,7 +89,10 @@ class AdminArticleController extends AdminBaseController {
             return $this->onFormError();
         }
 
-        // Store categories
+        // Store tags
+        $tags = $this->tags->findByCommaInput(Input::get('tags'));
+
+
         $tags = $this->taxons->findByIds(Input::get('categories'));
 
         dd($tags);

@@ -26,6 +26,9 @@
 <script>
     // Hook up ACE editor to all textareas with data-editor attribute
     $(function () {
+
+        $('#tags').tagsInput();
+
         $('textarea[data-editor]').each(function () {
             var textarea = $(this);
 

@@ -29,6 +29,14 @@
     @endforeach
 </div>
 
+<div class="form-group">
+    {{ Form::label('tags', 'Tags') }}
+    <br/>
+    <input name="tags" id="tags" type="text" class="form-control" value="foo,bar,baz" />
+</div>
+
+
+
 <hr/>
 
 <button type="submit" class="btn btn-default pull-right">{{ ( (isset($buttonText)) ? $buttonText : 'Save Article' ) }}</button>

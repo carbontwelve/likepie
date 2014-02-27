@@ -8,4 +8,9 @@ class Tag extends Taxon
 
     public $presenter = 'Likepie\Classification\TagPresenter';
 
+    public function articles()
+    {
+        return $this->morphedByMany('Likepie\Articles\Article', 'taggable');
+    }
+
 }

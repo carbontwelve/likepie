@@ -12,6 +12,7 @@
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo asset('assets/javascripts/vendor/tags/jquery.tagsinput.css'); ?>">
 
     <!-- Custom styles for this template -->
     <link href="<?php echo asset('assets/stylesheets/admin.css'); ?>" rel="stylesheet">
@@ -86,6 +87,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src="<?php echo asset('assets/javascripts/vendor/holder.js');?>"></script>
+<script src="<?php echo asset('assets/javascripts/vendor/tags/jquery.tagsinput.js');?>"></script>
 @yield('scripts')
 </body>
 </html>
