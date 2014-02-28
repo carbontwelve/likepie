@@ -57,7 +57,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'likepie',
 			'username'  => 'likepie',
-			'password'  => 'password',
+			'password'  => 'Kiq87XeRRsMbe9A',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
