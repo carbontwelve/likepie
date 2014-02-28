@@ -1,5 +1,6 @@
 <?php namespace Likepie\Classification;
 
+use Illuminate\Database\Eloquent\Collection;
 use Likepie\Core\EloquentRepository;
 
 class TagRepository extends EloquentRepository
@@ -24,20 +25,16 @@ class TagRepository extends EloquentRepository
         $tags  = $this->model->whereIn('name', $input)
             ->get();
 
-
-
         if (count($input) == $tags->count() ){ return $tags; }
+
+        $tagCollection = new Collection();
 
         if ( ! $tags->isEmpty() )
         {
             // Check which tags are in the database and add those that are not already there
             $tagsInDatabase = $tags->lists('name');
-            foreach ($input as $inputTag)
-            {
-
-            }
-
-            dd($tags);
+            $tagCollection  = $tags;
+            $input = array_diff( $input, $tagsInDatabase );
 
         }
 
@@ -45,12 +42,10 @@ class TagRepository extends EloquentRepository
         {
             $record = $this->getNew([ 'name' => $inputTag ]);
             $record->author_id = 1;
-            var_dump($record->save());
+            $record->save();
+
+            $tagCollection->add($record);
         }
-
-        dd ($input);
-
-        //return $this->findByCommaInput( implode(',', $input) );
-
+        return $tagCollection;
     }
 }

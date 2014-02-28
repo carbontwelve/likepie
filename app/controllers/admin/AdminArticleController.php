@@ -91,12 +91,7 @@ class AdminArticleController extends AdminBaseController {
 
         // Store tags
         $tags = $this->tags->findByCommaInput(Input::get('tags'));
-
-
-        $tags = $this->taxons->findByIds(Input::get('categories'));
-
-        dd($tags);
-        //$article->tags()->sync($tags->lists('id'));
+        $article->tags()->sync($tags->lists('id'));
 
         return $this->onFormSuccess($article);
 

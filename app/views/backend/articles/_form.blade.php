@@ -31,11 +31,8 @@
 
 <div class="form-group">
     {{ Form::label('tags', 'Tags') }}
-    <br/>
-    <input name="tags" id="tags" type="text" class="form-control" value="foo,bar,baz" />
+    {{ Form::text('tags', null, [ 'id' => 'tags', 'class' => 'form-control', 'placeholder' => 'Article Title']) }}
 </div>
-
-
 
 <hr/>
 

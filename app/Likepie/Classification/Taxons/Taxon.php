@@ -56,11 +56,34 @@ class Taxon extends Ardent
     }
 
     /**
+     * Extended Ardent save method to add taxonomic unit id
+     *
+     * @param array $rules
+     * @param array $customMessages
+     * @param array $options
+     * @param callable $beforeSave
+     * @param callable $afterSave
+     * @return bool|void
+     */
+    public function save(array $rules = array(),
+        array $customMessages = array(),
+        array $options = array(),
+        Closure $beforeSave = null,
+        Closure $afterSave = null
+    ){
+        if ( ! isset($this->taxonomic_unit_id) )
+        {
+            $this->taxonomic_unit_id = $this->getTaxonomicUnitId();
+        }
+
+        return parent::save($rules,$customMessages, $options, $beforeSave, $afterSave);
+    }
+
+    /**
      * Limit Taxons to Just those with taxonomy of name
      *
      * @param bool $excludeDeleted
      * @return \Illuminate\Database\Eloquent\Builder
-     * @throws \Exception
      */
     public function newQuery($excludeDeleted = true)
     {
@@ -72,6 +95,25 @@ class Taxon extends Ardent
             return $query;
         }
 
+        $query->where('taxonomic_unit_id', '=', $this->getTaxonomicUnitId());
+        return $query;
+    }
+
+    /**
+     * Generate the cache key for the taxon's taxonomy id
+     * @return string
+     */
+    protected function getCacheKey()
+    {
+        return 'taxonomy_' . static::TAXONOMY_NAME . '_id';
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Model|mixed|null|static
+     * @throws \Exception
+     */
+    public function getTaxonomicUnitId()
+    {
         $cacheKey = $this->getCacheKey();
 
         if ( ! Cache::has( $cacheKey ))
@@ -88,20 +130,10 @@ class Taxon extends Ardent
 
             Cache::put($cacheKey, $taxonomyUnitId, 40320);
 
+            return $taxonomyUnitId;
+
         }else{
-            $taxonomyUnitId = Cache::get( $cacheKey );
+            return Cache::get( $cacheKey );
         }
-
-        $query->where('taxonomic_unit_id', '=', $taxonomyUnitId);
-        return $query;
-    }
-
-    /**
-     * Generate the cache key for the taxon's taxonomy id
-     * @return string
-     */
-    protected function getCacheKey()
-    {
-        return 'taxonomy_' . static::TAXONOMY_NAME . '_id';
     }
 }
