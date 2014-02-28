@@ -1,5 +1,6 @@
 <?php namespace App\Controllers\Admin;
 
+use Likepie\Accounts\User;
 use View;
 
 /**
@@ -7,6 +8,14 @@ use View;
  * @package App\Controllers\Admin
  */
 class AdminUserController extends AdminBaseController {
+
+    /** @var \Likepie\Accounts\User $users */
+    private $users;
+
+    public function __construct( User $users )
+    {
+        $this->users = $users;
+    }
 
     public function index()
     {
