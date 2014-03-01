@@ -99,8 +99,11 @@ class AdminArticleController extends AdminBaseController {
 
     public function edit($id = null)
     {
-        $article  = $this->model->findById($id);
-        $statuses = $this->model->getModel()->getStatusEnumValuesForArray();
+        $article       = $this->model->findById($id);
+        $statuses      = $this->model->getModel()->getStatusEnumValuesForArray();
+        $articleTags   = implode(',', $article->tags->lists('name'));
+        $article->tags = $articleTags;
+
         return View::make('backend.articles.edit',
             [
                 'article' => $article,
@@ -126,8 +129,8 @@ class AdminArticleController extends AdminBaseController {
         }
 
         // Store tags
-        //$tags = $this->tags->getTagsByIds(Input::get('tags'));
-        //$article->tags()->sync($tags->lists('id'));
+        $tags = $this->tags->findByCommaInput(Input::get('tags'));
+        $article->tags()->sync($tags->lists('id'));
 
         return $this->redirectToRoute('admin.articles.edit', ['id' => $article->id])
             ->with('success', 'Article has been updated successfully');

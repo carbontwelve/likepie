@@ -10,4 +10,6 @@ class TaxonPresenter extends BasePresenter
     {
         return $this->resource->taxonomy->name;
     }
+
+
 }
