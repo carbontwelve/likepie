@@ -10,4 +10,8 @@ class UserRepository extends EloquentRepository
         $this->model = $model;
     }
 
+    public function getForm()
+    {
+        return new UserForm();
+    }
 }

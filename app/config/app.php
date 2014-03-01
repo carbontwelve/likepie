@@ -101,6 +101,8 @@ return array(
         'Illuminate\Validation\ValidationServiceProvider',
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Workbench\WorkbenchServiceProvider',
+
+        'Cartalyst\Sentry\Laravel\SentryServiceProvider',
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
         'GrahamCampbell\Markdown\MarkdownServiceProvider',
@@ -172,6 +174,7 @@ return array(
         'View'          => 'Illuminate\Support\Facades\View',
         'Markdown'      => 'GrahamCampbell\Markdown\Facades\Markdown',
         'Menu'          => 'Menu\Menu',
+        'Sentry'        => 'Cartalyst\Sentry\Laravel\Facades\Sentry'
 
     ),
 

@@ -8,6 +8,11 @@ use View;
  */
 class AdminGroupController extends AdminBaseController {
 
+    public function __construct()
+    {
+
+    }
+
     public function index()
     {
         return View::make('backend.groups.index');

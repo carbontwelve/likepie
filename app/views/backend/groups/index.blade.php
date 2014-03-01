@@ -8,4 +8,33 @@
     </div>
 </h1>
 
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th style="width:60px;">{{ link_to_sort_column_by('id', 'admin.groups.index', '#') }}</th>
+            <th>{{ link_to_sort_column_by('name', 'admin.groups.index', 'Name') }}</th>
+            <th style="width:100px; text-align: center;">Users</th>
+            <th style="width:150px; text-align: right;">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        @if($groups->count() > 0)
+        @foreach($groups as $group)
+        <tr>
+            <td>{{ $group->id }}</td>
+            <td>{{ $group->name }}</td>
+            <td>&ndash;</td>
+            <td>&ndash;</td>
+        </tr>
+        @endforeach
+        @else
+        <tr>
+            <td colspan="5">No groups in the database</td>
+        </tr>
+        @endif
+        </tbody>
+    </table>
+</div>
+
 @stop

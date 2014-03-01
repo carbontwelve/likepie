@@ -19,9 +19,11 @@ class AdminBaseController extends BaseController {
 
     public function __construct()
     {
+        // Apply the admin auth filter
+        // $this->beforeFilter('admin-auth');
+
         Menu::handler('main')->hydrate(function()
             {
-
                 return array(
 
                     array(
@@ -42,9 +44,7 @@ class AdminBaseController extends BaseController {
                             'as'   => 'admin.articles.create',
                         )
                     ),
-
                 );
-
             },
             function($children, $item)
             {
@@ -54,6 +54,8 @@ class AdminBaseController extends BaseController {
 
         parent::__construct();
     }
+
+
 
 }
 

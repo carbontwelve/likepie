@@ -11854,3 +11854,443 @@ class Markdown extends GrahamCampbell\Markdown\Facades\Markdown{
 class Menu extends Menu\Menu{
 }
 
+class Sentry extends Cartalyst\Sentry\Laravel\Facades\Sentry{
+	/**
+	 * Create a new Sentry instance.
+	 *
+	 * @param \Cartalyst\Sentry\Persistence\PersistenceInterface  $persistence
+	 * @param \Cartalyst\Sentry\Groups\GroupRepositoryInterface  $groups
+	 * @param \Cartalyst\Sentry\Users\UserRepositoryInterface  $users
+	 * @static 
+	 */
+	 public static function __construct($persistence = null, $users = null, $groups = null){
+		 Cartalyst\Sentry\Sentry::__construct($persistence, $users, $groups);
+	 }
+
+	/**
+	 * Registers a user. You may provide a callback to occur before the user
+	 * is saved, or provide a true boolean as a shortcut to activation.
+	 *
+	 * @param array  $credentials
+	 * @param \Closure|bool  $callback
+	 * @return \Cartalyst\Sentry\Users\UserInteface|bool
+	 * @throws \InvalidArgumentException
+	 * @static 
+	 */
+	 public static function register($credentials, $callback = null){
+		return Cartalyst\Sentry\Sentry::register($credentials, $callback);
+	 }
+
+	/**
+	 * Registers and activates the user.
+	 *
+	 * @param array  $credentials
+	 * @return \Cartalyst\Sentry\Users\UserInteface|bool
+	 * @static 
+	 */
+	 public static function registerAndActivate($credentials){
+		return Cartalyst\Sentry\Sentry::registerAndActivate($credentials);
+	 }
+
+	/**
+	 * Activates the given user.
+	 *
+	 * @param \Cartalyst\Sentry\Users\UserInterface  $user
+	 * @return bool
+	 * @throws \InvalidArgumentException
+	 * @static 
+	 */
+	 public static function activate($user){
+		return Cartalyst\Sentry\Sentry::activate($user);
+	 }
+
+	/**
+	 * Checks to see if a user is logged in.
+	 *
+	 * @return \Cartalyst\Sentry\Users\UserInterface|bool
+	 * @todo IS this where we would throw exceptions? (Not Activated etc)
+	 * @static 
+	 */
+	 public static function check(){
+		return Cartalyst\Sentry\Sentry::check();
+	 }
+
+	/**
+	 * Checks to see if a user is logged in, bypassing checkpoints
+	 *
+	 * @return \Cartalyst\Sentry\Users\UserInterface|bool
+	 * @static 
+	 */
+	 public static function forceCheck(){
+		return Cartalyst\Sentry\Sentry::forceCheck();
+	 }
+
+	/**
+	 * Returns if we are currently a guest.
+	 *
+	 * @return \Cartalyst\Sentry\Users\UserInterface|bool
+	 * @static 
+	 */
+	 public static function guest(){
+		return Cartalyst\Sentry\Sentry::guest();
+	 }
+
+	/**
+	 * Authenticates a user, with "remember" flag.
+	 *
+	 * @param \Cartalyst\Sentry\Users\UserInterface|array  $credentials
+	 * @param bool  $remember
+	 * @param bool  $login
+	 * @return \Cartalyst\Sentry\Users\UserInterface|bool
+	 * @static 
+	 */
+	 public static function authenticate($credentials, $remember = false, $login = true){
+		return Cartalyst\Sentry\Sentry::authenticate($credentials, $remember, $login);
+	 }
+
+	/**
+	 * Authenticates a user, with "remember" flag.
+	 *
+	 * @param \Cartalyst\Sentry\Users\UserInterface|array  $credentials
+	 * @return \Cartalyst\Sentry\Users\UserInterface|bool
+	 * @static 
+	 */
+	 public static function authenticateAndRemember($credentials){
+		return Cartalyst\Sentry\Sentry::authenticateAndRemember($credentials);
+	 }
+
+	/**
+	 * Forces an authentication to bypass checkpoints.
+	 *
+	 * @param \Cartalyst\Sentry\Users\UserInterface|array  $credentials
+	 * @param bool  $remember
+	 * @return \Cartalyst\Sentry\Users\UserInterface|bool
+	 * @static 
+	 */
+	 public static function forceAuthenticate($credentials, $remember = false){
+		return Cartalyst\Sentry\Sentry::forceAuthenticate($credentials, $remember);
+	 }
+
+	/**
+	 * Forces an authentication to bypass checkpoints, with the "remember" flag.
+	 *
+	 * @param \Cartalyst\Sentry\Users\UserInterface|array  $credentials
+	 * @return \Cartalyst\Sentry\Users\UserInterface|bool
+	 * @static 
+	 */
+	 public static function forceAuthenticateAndRemember($credentials){
+		return Cartalyst\Sentry\Sentry::forceAuthenticateAndRemember($credentials);
+	 }
+
+	/**
+	 * Attempt a stateless authentication.
+	 *
+	 * @param \Cartalyst\Sentry\Users\UserInterface|array  $credentials
+	 * @return \Cartalyst\Sentry\Users\UserInterface|bool
+	 * @static 
+	 */
+	 public static function stateless($credentials){
+		return Cartalyst\Sentry\Sentry::stateless($credentials);
+	 }
+
+	/**
+	 * Attempt to authenticate using HTTP Basic Auth.
+	 *
+	 * @return mixed
+	 * @static 
+	 */
+	 public static function basic(){
+		return Cartalyst\Sentry\Sentry::basic();
+	 }
+
+	/**
+	 * Get the request credentials.
+	 *
+	 * @return array
+	 * @static 
+	 */
+	 public static function getRequestCredentials(){
+		return Cartalyst\Sentry\Sentry::getRequestCredentials();
+	 }
+
+	/**
+	 * Set the closure which resolves request credentials.
+	 *
+	 * @param \Closure  $requestCredentials
+	 * @return void
+	 * @static 
+	 */
+	 public static function setRequestCredentials($requestCredentials){
+		 Cartalyst\Sentry\Sentry::setRequestCredentials($requestCredentials);
+	 }
+
+	/**
+	 * Sends a response when HTTP basic authentication fails.
+	 *
+	 * @return mixed
+	 * @static 
+	 */
+	 public static function getBasicResponse(){
+		return Cartalyst\Sentry\Sentry::getBasicResponse();
+	 }
+
+	/**
+	 * Set the callback which creates a basic response.
+	 *
+	 * @param \Closure  $basicResonse
+	 * @return void
+	 * @static 
+	 */
+	 public static function creatingBasicResponse($basicResponse){
+		 Cartalyst\Sentry\Sentry::creatingBasicResponse($basicResponse);
+	 }
+
+	/**
+	 * Persists a login for the given user.
+	 *
+	 * @param \Cartalyst\Sentry\Users\UserInterface  $user
+	 * @param bool  $remember
+	 * @return \Cartalyst\Sentry\Users\UserInterface|bool
+	 * @static 
+	 */
+	 public static function login($user, $remember = false){
+		return Cartalyst\Sentry\Sentry::login($user, $remember);
+	 }
+
+	/**
+	 * Persists a login for the given user, with "remember" flag.
+	 *
+	 * @param \Cartalyst\Sentry\Users\UserInterface  $user
+	 * @return \Cartalyst\Sentry\Users\UserInterface|bool
+	 * @static 
+	 */
+	 public static function loginAndRemember($user){
+		return Cartalyst\Sentry\Sentry::loginAndRemember($user);
+	 }
+
+	/**
+	 * Log the current (or given) user out.
+	 *
+	 * @param bool  $everywhere
+	 * @return bool
+	 * @static 
+	 */
+	 public static function logout($everywhere = false){
+		return Cartalyst\Sentry\Sentry::logout($everywhere);
+	 }
+
+	/**
+	 * Pass a closure to Sentry to bypass checkpoints.
+	 *
+	 * @param \Closure  $callback
+	 * @return mixed
+	 * @static 
+	 */
+	 public static function bypassCheckpoints($callback){
+		return Cartalyst\Sentry\Sentry::bypassCheckpoints($callback);
+	 }
+
+	/**
+	 * Returns if checkpoints are enabled.
+	 *
+	 * @return bool
+	 * @static 
+	 */
+	 public static function checkpointsEnabled(){
+		return Cartalyst\Sentry\Sentry::checkpointsEnabled();
+	 }
+
+	/**
+	 * Enables checkpoints.
+	 *
+	 * @return void
+	 * @static 
+	 */
+	 public static function enableCheckpoints(){
+		 Cartalyst\Sentry\Sentry::enableCheckpoints();
+	 }
+
+	/**
+	 * Disables checkpoints.
+	 *
+	 * @return void
+	 * @static 
+	 */
+	 public static function disableCheckpoints(){
+		 Cartalyst\Sentry\Sentry::disableCheckpoints();
+	 }
+
+	/**
+	 * Add a new checkpoint to Sentry.
+	 *
+	 * @param \Cartalyst\Sentry\Checkpoints\CheckpointInterface  $checkpoint
+	 * @return void
+	 * @static 
+	 */
+	 public static function addCheckpoint($checkpoint){
+		 Cartalyst\Sentry\Sentry::addCheckpoint($checkpoint);
+	 }
+
+	/**
+	 * Get the currently logged in user, lazily checking for it.
+	 *
+	 * @param bool  $check
+	 * @return \Cartalyst\Sentry\Users\UserInterface
+	 * @static 
+	 */
+	 public static function getUser($check = true){
+		return Cartalyst\Sentry\Sentry::getUser($check);
+	 }
+
+	/**
+	 * Set the user associated with Sentry (does not log in).
+	 *
+	 * @param \Cartalyst\Sentry\Users\UserInterface  $user
+	 * @return void
+	 * @static 
+	 */
+	 public static function setUser($user){
+		 Cartalyst\Sentry\Sentry::setUser($user);
+	 }
+
+	/**
+	 * Get the persistence instance.
+	 *
+	 * @return \Cartalyst\Sentry\Persistence\PersistenceInterface
+	 * @static 
+	 */
+	 public static function getPersistence(){
+		return Cartalyst\Sentry\Sentry::getPersistence();
+	 }
+
+	/**
+	 * Set the persistence instance.
+	 *
+	 * @param \Cartalyst\Sentry\Persistence\PersistenceInterface  $persistence
+	 * @return void
+	 * @static 
+	 */
+	 public static function setPersistence($persistence){
+		 Cartalyst\Sentry\Sentry::setPersistence($persistence);
+	 }
+
+	/**
+	 * Get the user repository.
+	 *
+	 * @return \Cartalyst\Sentry\Users\UserRepositoryInterface
+	 * @static 
+	 */
+	 public static function getUserRepository(){
+		return Cartalyst\Sentry\Sentry::getUserRepository();
+	 }
+
+	/**
+	 * Set the user repository.
+	 *
+	 * @param \Cartalyst\Sentry\Users\UserRepositoryInterface  $users
+	 * @return void
+	 * @static 
+	 */
+	 public static function setUserRepository($users){
+		 Cartalyst\Sentry\Sentry::setUserRepository($users);
+	 }
+
+	/**
+	 * Get the group repository.
+	 *
+	 * @return \Cartalyst\Sentry\Groups\GroupRepositoryInterface
+	 * @static 
+	 */
+	 public static function getGroupRepository(){
+		return Cartalyst\Sentry\Sentry::getGroupRepository();
+	 }
+
+	/**
+	 * Set the group repository.
+	 *
+	 * @param \Cartalyst\Sentry\Groups\GroupRepositoryInterface  $groups
+	 * @return void
+	 * @static 
+	 */
+	 public static function setGroupRepository($groups){
+		 Cartalyst\Sentry\Sentry::setGroupRepository($groups);
+	 }
+
+	/**
+	 * Get the event dispatcher.
+	 *
+	 * @return \Illuminate\Events\Dispatcher
+	 * @static 
+	 */
+	 public static function getEventDispatcher(){
+		return Cartalyst\Sentry\Sentry::getEventDispatcher();
+	 }
+
+	/**
+	 * Set the event dispatcher.
+	 *
+	 * @param \Illuminate\Events\Dispatcher  $dispatcher
+	 * @return void
+	 * @static 
+	 */
+	 public static function setEventDispatcher($dispatcher){
+		 Cartalyst\Sentry\Sentry::setEventDispatcher($dispatcher);
+	 }
+
+	/**
+	 * Get the activations repository.
+	 *
+	 * @return \Cartalyst\Sentry\Activations\ActivationRepositoryInterface
+	 * @static 
+	 */
+	 public static function getActivationsRepository(){
+		return Cartalyst\Sentry\Sentry::getActivationsRepository();
+	 }
+
+	/**
+	 * Set the activations repository.
+	 *
+	 * @param \Cartalyst\Sentry\Activations\ActivationRepositoryInterface  $activations
+	 * @return void
+	 * @static 
+	 */
+	 public static function setActivationsRepository($activations){
+		 Cartalyst\Sentry\Sentry::setActivationsRepository($activations);
+	 }
+
+	/**
+	 * Get the reminders repository.
+	 *
+	 * @return \Cartalyst\Sentry\Reminders\ReminderRepositoryInterface
+	 * @static 
+	 */
+	 public static function getRemindersRepository(){
+		return Cartalyst\Sentry\Sentry::getRemindersRepository();
+	 }
+
+	/**
+	 * Set the reminders repository.
+	 *
+	 * @param \Cartalyst\Sentry\Reminders\ReminderRepositoryInterface  $reminders
+	 * @return void
+	 * @static 
+	 */
+	 public static function setRemindersRepository($reminders){
+		 Cartalyst\Sentry\Sentry::setRemindersRepository($reminders);
+	 }
+
+	/**
+	 * Dynamically pass missing methods to Sentry.
+	 *
+	 * @param string  $method
+	 * @param array   $parameters
+	 * @return mixed
+	 * @throws \BadMethodCallException
+	 * @static 
+	 */
+	 public static function __call($method, $parameters){
+		return Cartalyst\Sentry\Sentry::__call($method, $parameters);
+	 }
+
+}
+
