@@ -28,7 +28,7 @@ class Taxonomy extends Ardent
      */
     public function author()
     {
-        return $this->belongsTo('Likepie\Accounts\User', 'author_id');
+        return $this->belongsTo('Likepie\Accounts\Users\User', 'author_id');
     }
 
     public function taxons()

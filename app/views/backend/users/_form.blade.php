@@ -42,17 +42,23 @@
 <!-- Activation Status -->
 <div class="form-group <?php echo ( $errors->has('activated') ? 'error' : '' ); ?>">
     {{ Form::label('activated', 'User Activated') }}
-
     {{
         Form::select('activated', array(
             1 => trans('general.yes'),
             0 => trans('general.no')
         ));
     }}
-
     <?php echo $errors->first('activated'); ?>
 </div>
 <!-- ./ activation status -->
+
+<!-- Groups -->
+<div class="form-group <?php echo ( $errors->has('group') ? 'error' : '' ); ?>">
+    {{ Form::label('group', 'Group') }}
+    {{ Form::select('group', $groups); }}
+    <?php echo $errors->first('group'); ?>
+</div>
+<!-- ./ groups -->
 
 <?php var_dump($groups); ?>
 

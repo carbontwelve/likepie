@@ -53,7 +53,7 @@ return array(
 
 	'users' => array(
 
-		'model' => 'Cartalyst\Sentry\Users\EloquentUser',
+		'model' => 'Likepie\Accounts\Users\User',
 
 	),
 
@@ -68,7 +68,7 @@ return array(
 
 	'groups' => array(
 
-		'model' => 'Cartalyst\Sentry\Groups\EloquentGroup',
+		'model' => 'Likepie\Accounts\Groups\Group',
 
 	),
 

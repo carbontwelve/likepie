@@ -1,4 +1,4 @@
-<?php namespace Likepie\Accounts;
+<?php namespace Likepie\Accounts\Users;
 
 use Likepie\Core\FormModel;
 

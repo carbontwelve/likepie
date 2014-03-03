@@ -1,6 +1,6 @@
 <?php namespace App\Controllers\Admin;
 
-use Likepie\Accounts\UserRepository;
+use Likepie\Accounts\Users\UserRepository;
 use Sentry;
 use Input;
 use View;
@@ -11,8 +11,11 @@ use View;
  */
 class AdminUserController extends AdminBaseController {
 
-    /** @var \Likepie\Accounts\User $users */
+    /** @var \Likepie\Accounts\Users\UserRepository */
     private $users;
+
+    /** @var \Cartalyst\Sentry\Users\UserRepositoryInterface */
+    private $sentryUserRepository;
 
     /** @var \Cartalyst\Sentry\Groups\GroupRepositoryInterface  */
     private $groups;
@@ -20,14 +23,14 @@ class AdminUserController extends AdminBaseController {
     public function __construct( UserRepository $users )
     {
         $this->users  = $users;
+        $this->sentryUserRepository = Sentry::getUserRepository();
         $this->groups = Sentry::getGroupRepository();
     }
 
     public function index()
     {
-        $users = $this->users->getAllPaginated();
         return View::make('backend.users.index')
-            ->with('users', $users);
+            ->with( 'users', $this->users->getAllPaginated() );
     }
 
     public function create()
@@ -44,6 +47,16 @@ class AdminUserController extends AdminBaseController {
             return $this->redirectBack(['errors' => $form->getErrors()]);
         }
 
-        dd(Input::all());
+        $user = $this->sentryUserRepository->create(Input::only('first_name', 'last_name', 'email', 'password', 'activated'));
+
+        if ( $user === false ) {
+            return $this->redirectBack(['error' => 'There was a problem saving that form']);
+        }
+
+        $user->groups()->sync(Input::only('group'));
+
+        return $this->redirectToRoute('admin.groups.edit', ['id' => $user->id])
+            ->with('success', 'New user has been saved successfully');
+
     }
 }

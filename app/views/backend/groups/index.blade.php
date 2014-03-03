@@ -25,7 +25,12 @@
             <td>{{ $group->id }}</td>
             <td>{{ $group->name }}</td>
             <td>&ndash;</td>
-            <td>&ndash;</td>
+            <td style="text-align: right">
+                <div class="btn-group">
+                    <a href="{{ route('admin.groups.edit', $group->id) }}" class="btn btn-info btn-xs">Edit</a>
+                    <button type="button" class="btn btn-danger btn-xs">Delete</button>
+                </div>
+            </td>
         </tr>
         @endforeach
         @else
