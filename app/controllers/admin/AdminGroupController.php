@@ -20,6 +20,16 @@ class AdminGroupController extends AdminBaseController {
      */
     private $groups;
 
+    /**
+     * Loaded Permissions
+     * @var array
+     */
+    private $permissions;
+
+    /**
+     *
+     * @param GroupRepository $groups
+     */
     public function __construct( GroupRepository $groups )
     {
         $this->sentryGroupRepository = Sentry::getGroupRepository();
@@ -39,7 +49,8 @@ class AdminGroupController extends AdminBaseController {
     {
         return View::make('backend.groups.create',
         [
-            'permissions' => $this->permissions
+            'permissions'         => $this->permissions,
+            'selectedPermissions' => Input::old('permissions', array())
         ]);
     }
 
@@ -51,7 +62,12 @@ class AdminGroupController extends AdminBaseController {
             return $this->redirectBack(['errors' => $form->getErrors()]);
         }
 
-        $group = $this->groups->getNew( Input::only('name') );
+        // Update Permissions GET params
+        $permissions = Input::get('permissions', array());
+        $this->decodePermissions($permissions);
+        app('request')->request->set('permissions', $permissions);
+
+        $group = $this->groups->getNew( Input::only(['name', 'permissions']) );
 
         if ( ! $group->save() ) {
             return $this->redirectBack(['error' => 'There was a problem saving that form']);
@@ -63,10 +79,16 @@ class AdminGroupController extends AdminBaseController {
 
     public function edit($id = null)
     {
+        $group = $this->groups->findById($id);
+        $groupPermissions = $group->permissions;
+        $this->encodePermissions($groupPermissions);
+        $groupPermissions = array_merge($groupPermissions, Input::old('permissions', array()));
+
         return View::make('backend.groups.edit',
             [
-                'group'       => $this->groups->findById($id),
-                'permissions' => Config::get('permissions')
+                'group'               => $group,
+                'permissions'         => $this->permissions,
+                'selectedPermissions' => $groupPermissions
             ]
         );
     }
@@ -79,8 +101,13 @@ class AdminGroupController extends AdminBaseController {
             return $this->redirectBack(['errors' => $form->getErrors()]);
         }
 
+        // Update Permissions GET params
+        $permissions = Input::get('permissions', array());
+        $this->decodePermissions($permissions);
+        app('request')->request->set('permissions', $permissions);
+
         $group = $this->groups->findById($id);
-        $group->fill( Input::only('name'));
+        $group->fill( Input::only(['name', 'permissions']));
 
         if ( ! $group->save()) {
             return $this->redirectBack(['error' => 'There was a problem saving that form']);

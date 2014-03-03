@@ -1,6 +1,7 @@
 <?php namespace App\Controllers\Admin;
 
 use Likepie\Accounts\Users\UserRepository;
+use Config;
 use Sentry;
 use Input;
 use View;
@@ -20,11 +21,23 @@ class AdminUserController extends AdminBaseController {
     /** @var \Cartalyst\Sentry\Groups\GroupRepositoryInterface  */
     private $groups;
 
+    /**
+     * Loaded Permissions
+     * @var array
+     */
+    private $permissions;
+
+    /**
+     * @param UserRepository $users
+     */
     public function __construct( UserRepository $users )
     {
-        $this->users  = $users;
+        $this->users                = $users;
         $this->sentryUserRepository = Sentry::getUserRepository();
-        $this->groups = Sentry::getGroupRepository();
+        $this->groups               = Sentry::getGroupRepository();
+        $this->permissions          = Config::get('permissions');
+
+        $this->encodeAllPermissions($this->permissions, false);
     }
 
     public function index()
@@ -36,7 +49,9 @@ class AdminUserController extends AdminBaseController {
     public function create()
     {
         return View::make('backend.users.create')
-            ->with('groups', $this->groups->createModel()->get()->lists('name', 'id'));
+            ->with('groups', $this->groups->createModel()->get()->lists('name', 'id'))
+            ->with('permissions', $this->permissions)
+            ->with('selectedPermissions', Input::old('permissions', array( 'superuser' => -1 )));
     }
 
     public function store()
@@ -47,7 +62,12 @@ class AdminUserController extends AdminBaseController {
             return $this->redirectBack(['errors' => $form->getErrors()]);
         }
 
-        $user = $this->sentryUserRepository->create(Input::only('first_name', 'last_name', 'email', 'password', 'activated'));
+        // Update Permissions GET params
+        $permissions = Input::get('permissions', array());
+        $this->decodePermissions($permissions);
+        app('request')->request->set('permissions', $permissions);
+
+        $user = $this->sentryUserRepository->create(Input::only('first_name', 'last_name', 'email', 'password', 'activated', 'permissions'));
 
         if ( $user === false ) {
             return $this->redirectBack(['error' => 'There was a problem saving that form']);
@@ -70,9 +90,15 @@ class AdminUserController extends AdminBaseController {
                 ->with('error', 'That user record does not exist and therefore can not be edited.');
         }
 
+        $userPermissions = $user->permissions;
+        $this->encodePermissions($userPermissions);
+        $userPermissions = array_merge($userPermissions, Input::old('permissions', array( 'superuser' => -1 )));
+
         return View::make('backend.users.edit')
             ->with('user', $user )
-            ->with('groups', $this->groups->createModel()->get()->lists('name', 'id'));
+            ->with('groups', $this->groups->createModel()->get()->lists('name', 'id'))
+            ->with('permissions', $this->permissions)
+            ->with('selectedPermissions', $userPermissions);
     }
 
     public function update( $id = null )

@@ -14,6 +14,6 @@ return array(
             'permission' => 'admin',
             'label'      => 'Admin Rights',
         ),
-    ),
+    )
 
 );
