@@ -14,7 +14,7 @@
         <tr>
             <th style="width:60px;">{{ link_to_sort_column_by('id', 'admin.groups.index', '#') }}</th>
             <th>{{ link_to_sort_column_by('name', 'admin.groups.index', 'Name') }}</th>
-            <th style="width:100px; text-align: center;">Users</th>
+            <th style="width:80px; text-align: center;">Users</th>
             <th style="width:150px; text-align: right;">Actions</th>
         </tr>
         </thead>
@@ -24,7 +24,7 @@
         <tr>
             <td>{{ $group->id }}</td>
             <td>{{ $group->name }}</td>
-            <td>&ndash;</td>
+            <td>{{ $group->users->count() }}</td>
             <td style="text-align: right">
                 <div class="btn-group">
                     <a href="{{ route('admin.groups.edit', $group->id) }}" class="btn btn-info btn-xs">Edit</a>

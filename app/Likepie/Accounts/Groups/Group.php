@@ -36,4 +36,11 @@ class Group extends EloquentGroup
      */
     //public $presenter      = 'Likepie\Accounts\UserPresenter';
 
+    public function save(array $options = array())
+    {
+        // Sentry 3 seems not to have this as default yet, not sure if that is an oversight or not :/
+        $this->slug = \Str::slug($this->name);
+        return parent::save();
+    }
+
 }

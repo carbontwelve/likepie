@@ -51,9 +51,9 @@ class AdminGroupController extends AdminBaseController {
             return $this->redirectBack(['errors' => $form->getErrors()]);
         }
 
-        $group = $this->sentryGroupRepository->create(Input::only('name'));
+        $group = $this->groups->getNew( Input::only('name') );
 
-        if ( $group === false ) {
+        if ( ! $group->save() ) {
             return $this->redirectBack(['error' => 'There was a problem saving that form']);
         }
 

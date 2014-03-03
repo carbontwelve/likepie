@@ -32,4 +32,22 @@ class UserPresenter extends BasePresenter
         $gravatar = md5(strtolower(trim($this->resource->email)));
         return "//gravatar.org/avatar/{$gravatar}";
     }
+
+    /**
+     * Returns the users groups as a concatenated string separated by commas
+     * @return string
+     */
+    public function inGroups()
+    {
+        // $this->resource
+
+        if ($this->resource->groups->count() == 0)
+        {
+            return '<span class="text-danger">None</span>';
+        }
+
+        $groups = implode(',', $this->resource->groups->lists('name'));
+
+        return '<span class="text-success">' . $groups . '</span>';
+    }
 }

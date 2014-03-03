@@ -55,8 +55,55 @@ class AdminUserController extends AdminBaseController {
 
         $user->groups()->sync(Input::only('group'));
 
-        return $this->redirectToRoute('admin.groups.edit', ['id' => $user->id])
+        return $this->redirectToRoute('admin.users.edit', ['id' => $user->id])
             ->with('success', 'New user has been saved successfully');
-
     }
+
+    public function edit($id = null)
+    {
+
+        $user = $this->sentryUserRepository->findById($id);
+
+        if (is_null($user))
+        {
+            return $this->redirectToRoute('admin.users.index')
+                ->with('error', 'That user record does not exist and therefore can not be edited.');
+        }
+
+        return View::make('backend.users.edit')
+            ->with('user', $user )
+            ->with('groups', $this->groups->createModel()->get()->lists('name', 'id'));
+    }
+
+    public function update( $id = null )
+    {
+        $user = $this->sentryUserRepository->findById($id);
+
+        if (is_null($user))
+        {
+            return $this->redirectToRoute('admin.users.index')
+                ->with('error', 'That user record does not exist and therefore can not be edited.');
+        }
+
+        $form = $this->users->getForm();
+        $form->setMode('update');
+
+        if ( ! $form->isValid()) {
+            return $this->redirectBack(['errors' => $form->getErrors()]);
+        }
+
+        $inputForSave = Input::only('first_name', 'last_name', 'email', 'password', 'activated');
+
+        if ($inputForSave['password'] == '')
+        {
+            unset($inputForSave['password']);
+        }
+
+        $user = $this->sentryUserRepository->update($user, $inputForSave);
+        $user->groups()->sync(Input::only('group'));
+
+        return $this->redirectToRoute('admin.users.edit', ['id' => $user->id])
+            ->with('success', 'Record updated successfully');
+    }
+
 }

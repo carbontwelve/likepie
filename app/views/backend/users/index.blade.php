@@ -8,6 +8,8 @@
     </div>
 </h1>
 
+@include('backend.notifications')
+
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
@@ -15,7 +17,7 @@
             <th style="width:60px;">{{ link_to_sort_column_by('id', 'admin.users.index', '#') }}</th>
             <th>{{ link_to_sort_column_by('email', 'admin.users.index', 'Email') }}</th>
             <th style="width:140px; text-align: center;">{{ link_to_sort_column_by('first_name', 'admin.users.index', 'Full Name') }}</th>
-            <th style="width:100px; text-align: center;">Group</th>
+            <th style="width:100px; text-align: center;">Groups</th>
             <th style="width:150px; text-align: right;">Actions</th>
         </tr>
         </thead>
@@ -26,8 +28,13 @@
             <td>{{ $user->id }}</td>
             <td>{{ $user->email }}</td>
             <td>{{ $user->fullName }}</td>
-            <td>&ndash;</td>
-            <td>&ndash;</td>
+            <td>{{ $user->inGroups }}</td>
+            <td style="text-align: right">
+                <div class="btn-group">
+                    <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-info btn-xs">Edit</a>
+                    <button type="button" class="btn btn-danger btn-xs">Delete</button>
+                </div>
+            </td>
         </tr>
             @endforeach
         @else
