@@ -1,9 +1,11 @@
 <?php namespace App\Controllers\Admin;
 
-use BaseController;
 use Illuminate\Support\Collection;
-use Menu;
+use BaseController;
 use stdClass;
+use Input;
+use Menu;
+
 
 
 /**
@@ -123,6 +125,14 @@ class AdminBaseController extends BaseController {
         }
 
         $permissions = $decodedPermissions;
+    }
+
+    protected function setPermissionsFromInput( array $default = [] )
+    {
+        // Update Permissions GET params
+        $permissions = Input::get('permissions', $default);
+        $this->decodePermissions($permissions);
+        app('request')->request->set('permissions', $permissions);
     }
 }
 

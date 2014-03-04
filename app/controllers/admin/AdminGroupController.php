@@ -62,10 +62,7 @@ class AdminGroupController extends AdminBaseController {
             return $this->redirectBack(['errors' => $form->getErrors()]);
         }
 
-        // Update Permissions GET params
-        $permissions = Input::get('permissions', array());
-        $this->decodePermissions($permissions);
-        app('request')->request->set('permissions', $permissions);
+        $this->setPermissionsFromInput();
 
         $group = $this->groups->getNew( Input::only(['name', 'permissions']) );
 
@@ -101,10 +98,7 @@ class AdminGroupController extends AdminBaseController {
             return $this->redirectBack(['errors' => $form->getErrors()]);
         }
 
-        // Update Permissions GET params
-        $permissions = Input::get('permissions', array());
-        $this->decodePermissions($permissions);
-        app('request')->request->set('permissions', $permissions);
+        $this->setPermissionsFromInput();
 
         $group = $this->groups->findById($id);
         $group->fill( Input::only(['name', 'permissions']));

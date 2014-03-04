@@ -62,10 +62,7 @@ class AdminUserController extends AdminBaseController {
             return $this->redirectBack(['errors' => $form->getErrors()]);
         }
 
-        // Update Permissions GET params
-        $permissions = Input::get('permissions', array());
-        $this->decodePermissions($permissions);
-        app('request')->request->set('permissions', $permissions);
+        $this->setPermissionsFromInput();
 
         $user = $this->sentryUserRepository->create(Input::only('first_name', 'last_name', 'email', 'password', 'activated', 'permissions'));
 
@@ -118,7 +115,9 @@ class AdminUserController extends AdminBaseController {
             return $this->redirectBack(['errors' => $form->getErrors()]);
         }
 
-        $inputForSave = Input::only('first_name', 'last_name', 'email', 'password', 'activated');
+        $this->setPermissionsFromInput();
+
+        $inputForSave = Input::only('first_name', 'last_name', 'email', 'password', 'activated', 'permissions');
 
         if ($inputForSave['password'] == '')
         {
