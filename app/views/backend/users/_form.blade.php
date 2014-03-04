@@ -95,8 +95,6 @@
     </div>
 </div>
 
-<?php var_dump($groups); ?>
-
 <hr/>
 
 <button type="submit" class="btn btn-default pull-right">{{ ( (isset($buttonText)) ? $buttonText : 'Save User' ) }}</button>

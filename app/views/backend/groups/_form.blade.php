@@ -40,10 +40,8 @@
         </div>
         @endforeach
     </div>
-
-    <?php var_dump($permissions); ?>
-    <?php var_dump($selectedPermissions); ?>
-
 </div>
+
+<hr/>
 
 <button type="submit" class="btn btn-default pull-right">{{ ( (isset($buttonText)) ? $buttonText : 'Save Group' ) }}</button>
