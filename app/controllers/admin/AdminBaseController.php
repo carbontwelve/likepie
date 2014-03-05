@@ -24,36 +24,106 @@ class AdminBaseController extends BaseController {
         // Apply the admin auth filter
         // $this->beforeFilter('admin-auth');
 
-        Menu::handler('main')->hydrate(function()
+
+        /*
+         Menu::hydrate(function($parentId)
+          {
+             return Page::where('parent_id', $parentId)
+               ->get();
+           },
+           function($children, $page)
+           {
+             $children->add($page->slug, $page->name);
+           });
+
+         */
+
+        Menu::handler('main')->hydrate(
+            function()
             {
                 return array(
-
-                    array(
+                    [
                         'id'   => 1,
                         'url'  => route('admin.dashboard'),
-                        'name' => '<i class="glyphicon glyphicon-dashboard"></i> Overview',
-                        'as'   => 'admin.dashboard',
-                        'children' => array()
-                    ),
-                    array(
+                        'name' => '<i class="glyphicon glyphicon-dashboard"></i> Dashboard',
+                        'as'   => 'dashboard'
+                    ],
+                    [
                         'id'   => 2,
-                        'url'  => route('admin.articles.index'),
-                        'name' => '<i class="glyphicon glyphicon-dashboard"></i> Articles',
-                        'as'   => 'admin.articles.index',
-                        'children' => array(
-                            'url' => route('admin.articles.create'),
-                            'name' => 'Create New Article',
-                            'as'   => 'admin.articles.create',
-                        )
-                    ),
+                        'url'  =>route('admin.articles.index'),
+                        'name' => '<i class="glyphicon glyphicon-file"></i> Articles',
+                        'as'   => 'articles'
+                    ],
+                    [
+                        'id'   => 3,
+                        'url'  => route('admin.media.index'),
+                        'name' => '<i class="glyphicon glyphicon-picture"></i> Media',
+                        'as'   => 'media'
+                    ],
+                    [
+                        'id'   => 4,
+                        'url'  => route('admin.taxons.index'),
+                        'name' => '<i class="glyphicon glyphicon-tag"></i> Taxons',
+                        'as'   => 'taxons'
+                    ],
+                    [
+                        'id'   => 5,
+                        'url'  => route('admin.users.index'),
+                        'name' => '<i class="glyphicon glyphicon-user"></i> Users',
+                        'as'   => 'users'
+                    ],
+                    [
+                        'id'   => 6,
+                        'url'  => '#',
+                        'name' => '<i class="glyphicon glyphicon-cutlery"></i> Tools',
+                        'as'   => 'tools'
+                    ]
                 );
             },
             function($children, $item)
             {
-                $children->add($item['url'], $item['name'], Menu::items($item['as']), $item['children']);
+                $children->add($item['url'], $item['name'], Menu::items($item['as']));
             }
         )->addClass('nav nav-sidebar');
 
+
+        Menu::getItemList('main')->find('users')->add(
+            route('admin.users.create'),
+            'New user',
+            null
+        );
+
+        Menu::getItemList('main')->find('users')->add(
+            '#',
+            'User Log',
+            null
+        );
+
+        Menu::getItemList('main')->find('users')->add(
+            route('admin.permissions.index'),
+            'Permissions',
+            null
+        );
+
+        Menu::getItemList('main')->find('articles')->add(
+            route('admin.articles.create'),
+            'New article',
+            null
+        );
+
+        /*
+        Menu::getItemList('main')->find('overview')->add(
+            route('admin.dashboard'),
+            'Stuff',
+            null
+        );
+
+        Menu::getItemList('main')->find('content')->add(
+            route('admin.articles.index'),
+            'Articles',
+            null
+        );
+        */
         parent::__construct();
     }
 

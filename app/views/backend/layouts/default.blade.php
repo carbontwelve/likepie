@@ -54,28 +54,11 @@
 <div class="container-fluid">
 
     <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
+        <div class="col-sm-3 col-md-1 sidebar">
             {{ Menu::handler('main') }}
-            <ul class="nav nav-sidebar">
-                <li <?php if (Route::is('admin.dashboard')){ echo 'class="active"'; } ?>><a href="<?php echo route('admin.dashboard'); ?>"><i class="glyphicon glyphicon-dashboard"></i> Overview</a></li>
-                <li <?php if (Route::is('admin.articles.index')){ echo 'class="active"'; } ?>><a href="<?php echo route('admin.articles.index'); ?>"><i class="glyphicon glyphicon-file"></i> Articles</a></li>
-                <li <?php if (Route::is('admin.taxonomy.index')){ echo 'class="active"'; } ?>><a href="<?php echo route('admin.taxonomy.index'); ?>"><i class="glyphicon glyphicon-tags"></i> Taxonomy</a></li>
-                <li <?php if (Route::is('admin.taxons.index')){ echo 'class="active"'; } ?>><a href="<?php echo route('admin.taxons.index'); ?>"><i class="glyphicon glyphicon-tag"></i> Taxons</a></li>
-                <li <?php if (Route::is('admin.media.index')){ echo 'class="active"'; } ?>><a href="<?php echo route('admin.media.index'); ?>"><i class="glyphicon glyphicon-picture"></i> Media</a></li>
-            </ul>
-            <ul class="nav nav-sidebar">
-                <li <?php if (Route::is('admin.users.index')){ echo 'class="active"'; } ?>><a href="<?php echo route('admin.users.index'); ?>"><i class="glyphicon glyphicon-user"></i> Users</a></li>
-                <li <?php if (Route::is('admin.groups.index')){ echo 'class="active"'; } ?>><a href="<?php echo route('admin.groups.index'); ?>"><i class="glyphicon glyphicon-list-alt"></i> Groups</a></li>
-                <li <?php if (Route::is('admin.permissions.index')){ echo 'class="active"'; } ?>><a href="<?php echo route('admin.permissions.index'); ?>"><i class="glyphicon glyphicon-list-alt"></i> Permissions</a></li>
-            </ul>
-            <ul class="nav nav-sidebar">
-                <li><a href="">Nav item again</a></li>
-                <li><a href="">One more nav</a></li>
-                <li><a href="">Another nav item</a></li>
-            </ul>
         </div>
 
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <div id="content" class="col-sm-9 col-sm-offset-3 col-md-11 col-md-offset-1 main">
         @yield('content')
         </div>
     </div>

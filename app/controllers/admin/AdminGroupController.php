@@ -32,6 +32,8 @@ class AdminGroupController extends AdminBaseController {
      */
     public function __construct( GroupRepository $groups )
     {
+        parent::__construct();
+
         $this->sentryGroupRepository = Sentry::getGroupRepository();
         $this->groups                = $groups;
         $this->permissions           = Config::get('permissions');

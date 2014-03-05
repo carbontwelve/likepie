@@ -32,6 +32,8 @@ class AdminUserController extends AdminBaseController {
      */
     public function __construct( UserRepository $users )
     {
+        parent::__construct();
+
         $this->users                = $users;
         $this->sentryUserRepository = Sentry::getUserRepository();
         $this->groups               = Sentry::getGroupRepository();

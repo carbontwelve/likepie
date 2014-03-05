@@ -4,7 +4,8 @@
 <h1 class="page-header">
     Taxons
     <div class="pull-right">
-        <a href="{{ route('admin.taxons.create') }}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Create Taxon</a>
+        <a href="{{ route('admin.taxonomy.index') }}" class="btn btn-success"><i class="glyphicon glyphicon-tags"></i> Taxonomy</a>
+        <a href="{{ route('admin.taxons.create') }}" class="btn btn-info"><i class="glyphicon glyphicon-plus"></i> Create Taxon</a>
     </div>
 </h1>
 
@@ -43,13 +44,5 @@
 </table>
 
 {{ $taxons->appends( Request::only(['sortBy', 'direction']) )->links() }}
-
-<?php var_dump( Menu::handler('main')->render() ); ?>
-
-<?php var_dump(Menu::handler('main')
-    ->breadcrumbs()
-    ->setElement('ol')
-    ->addClass('breadcrumb')
-    ->render()); ?>
 
 @stop

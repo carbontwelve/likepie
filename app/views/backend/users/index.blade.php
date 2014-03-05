@@ -4,6 +4,7 @@
 <h1 class="page-header">
     Users
     <div class="pull-right">
+        <a href="{{ route('admin.groups.index') }}" class="btn btn-info"><i class="glyphicon glyphicon-th-large"></i> Groups</a>
         <a href="{{ route('admin.users.create') }}" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Create New User</a>
     </div>
 </h1>
