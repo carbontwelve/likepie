@@ -30,16 +30,18 @@ body {
 /* Hide for mobile, show later */
 .sidebar {
   display: none;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: linear-gradient(to right, rgb(58, 54, 51) 93%, rgb(42, 39, 37) 100%);
 }
 @media (min-width: 768px) {
   .sidebar {
+    width: 220px;
     position: fixed;
     top: 51px;
     bottom: 0;
     left: 0;
     z-index: 1000;
     display: block;
-    padding: 20px;
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
     background-color: #f5f5f5;
@@ -49,25 +51,105 @@ body {
 
 /* Sidebar navigation */
 .nav-sidebar {
-  margin-right: -21px; /* 20px padding + 1px border */
-  margin-bottom: 20px;
-  margin-left: -20px;
 }
+
 .nav-sidebar > li > a {
+  background: transparent;
   padding-right: 20px;
   padding-left: 20px;
+  color: rgb(168, 168, 168);
 }
 .nav-sidebar > .active > a {
   color: #fff;
-  background-color: #428bca;
 }
 
+.nav-sidebar > li > ul{
+  display: none;
+}
+
+.nav-sidebar > li > ul > li{
+ position: relative;
+}
+
+.nav-sidebar > .active > ul,
+.nav-sidebar > .active-child > ul,
+.nav-sidebar > .open > ul{
+  display: block;
+}
+
+.nav-sidebar li a:hover{
+ background: transparent;
+ color: #fff;
+}
+
+.nav-sidebar li a:active{
+ background: rgba(168, 168, 168, 0.5);
+}
+
+.nav-sidebar ul{
+ margin: 0;
+ display: none;
+ background: rgba(69,69,69,.6);
+ padding: 7px 0;
+ position: relative;
+}
+
+.nav-sidebar li a{
+ line-height: normal;
+ font-size: 14px;
+ padding: 10px 10px 10px 11px;
+ color: #a8a8a8;
+ display: block;
+ font-weight: 400;
+ text-decoration: none!important;
+ position: relative;
+}
+
+.nav-sidebar ul li > a{
+ padding-left: 42px;
+ font-size: 14px;
+ font-weight: 400;
+ outline: 0;
+}
+
+.nav-sidebar > li > ul:before{
+ content: "";
+ display: block;
+ position: absolute;
+ z-index: 1;
+ left: 23px;
+ top: 0;
+ bottom: 0;
+ border-left: 1px solid #7A7A7A;
+}
+
+.nav-sidebar ul li:before{
+ content: "";
+ display: block;
+ position: absolute;
+ width: 8px;
+ left: 23px;
+ top: 16px;
+ border-top: 1px solid #7A7A7A;
+ z-index: 1;
+}
+
+.nav-sidebar > li > ul > li > a,
+.nav-sidebar > li > ul > li > ul > a{
+ padding-top: 7px;
+ padding-bottom: 7px;
+}
+
+.nav-sidebar > li > ul > li.active > a{
+ color: #fff;
+}
 
 /*
  * Main content
  */
 
 .main {
+  margin-left: 220px;
   padding: 20px;
 }
 @media (min-width: 768px) {

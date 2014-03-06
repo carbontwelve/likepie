@@ -9,6 +9,8 @@
     </div>
 </h1>
 
+@include('backend.partials.breadcrumbs')
+
 @include('backend.notifications')
 
 <?php echo Form::model(new \Likepie\Articles\Article, array('route' => array('admin.articles.store'))); ?>

@@ -9,6 +9,8 @@
     </div>
 </h1>
 
+@include('backend.partials.breadcrumbs')
+
 @include('backend.notifications')
 
 <?php echo Form::model($article, array('method' => 'PATCH', 'route' => array('admin.articles.update', 'id' => $article->id))); ?>

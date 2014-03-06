@@ -54,15 +54,17 @@
 <div class="container-fluid">
 
     <div class="row">
-        <div class="col-sm-3 col-md-1 sidebar">
+        <div class="sidebar">
             {{ Menu::handler('main') }}
         </div>
 
-        <div id="content" class="col-sm-9 col-sm-offset-3 col-md-11 col-md-offset-1 main">
+        <div id="content" class="main" role="main">
         @yield('content')
         </div>
     </div>
 </div>
+
+
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
