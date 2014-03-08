@@ -1,90 +1,202 @@
 /*
  * Base structure
  */
-
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
   background: #F5F5F5;
   color: #3b3b41;
   padding-top: 50px;
 }
-
-#content{
+#content {
   background: #ffffff;
 }
-
 /*
  * Global add-ons
  */
-
 .sub-header {
   padding-bottom: 10px;
   border-bottom: 1px solid #eee;
 }
-
-
+.banner {
+  background: #474544;
+  height: 43px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ccc;
+  position: relative;
+}
+.banner:after {
+  content: "";
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  display: block;
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+}
+.banner .breadcrumb {
+  border-radius: 0;
+  background-color: transparent;
+  margin-bottom: 0;
+  padding: 11px 15px;
+}
+.banner .breadcrumb a {
+  color: #ccc;
+}
+.banner .breadcrumb a:hover {
+  color: #ccc;
+  text-transform: none;
+}
+.page-pane {
+  padding: 15px;
+}
 /*
  * Sidebar
  */
-
 /* Hide for mobile, show later */
 .sidebar {
   display: none;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: linear-gradient(to right, #3a3633 93%, #2a2725 100%);
 }
 @media (min-width: 768px) {
   .sidebar {
+    width: 220px;
     position: fixed;
     top: 51px;
     bottom: 0;
     left: 0;
     z-index: 1000;
     display: block;
-    padding: 20px;
     overflow-x: hidden;
-    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    overflow-y: auto;
+    /* Scrollable contents if viewport is shorter than content. */
     background-color: #f5f5f5;
-    border-right: 1px solid #eee;
+    border-right: 1px solid #3a3633;
+  }
+  .sidebar .user {
+    height: 42px;
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+  }
+  .sidebar .user:after {
+    content: "";
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    display: block;
+    position: absolute;
+    width: 100%;
+  }
+  .sidebar .user .avatar {
+    background: #000;
+    height: 25px;
+    width: 25px;
+    float: left;
+    margin: 8px 10px;
+  }
+  .sidebar .user a {
+    padding: 10px 0px;
+    display: block;
+    color: #FFF;
+  }
+  .sidebar .user a:hover {
+    text-decoration: none;
+    color: #a8a8a8;
   }
 }
-
 /* Sidebar navigation */
-.nav-sidebar {
-  margin-right: -21px; /* 20px padding + 1px border */
-  margin-bottom: 20px;
-  margin-left: -20px;
-}
 .nav-sidebar > li > a {
+  background: transparent;
   padding-right: 20px;
   padding-left: 20px;
+  color: #a8a8a8;
 }
 .nav-sidebar > .active > a {
   color: #fff;
-  background-color: #428bca;
 }
-
-
+.nav-sidebar > li > ul {
+  display: none;
+}
+.nav-sidebar > li > ul > li {
+  position: relative;
+}
+.nav-sidebar > .active > ul,
+.nav-sidebar > .active-child > ul,
+.nav-sidebar > .open > ul {
+  display: block;
+}
+.nav-sidebar li a:hover {
+  background: transparent;
+  color: #fff;
+}
+.nav-sidebar li a:active {
+  background: rgba(168, 168, 168, 0.5);
+}
+.nav-sidebar ul {
+  margin: 0;
+  display: none;
+  background: rgba(69, 69, 69, 0.6);
+  padding: 7px 0;
+  position: relative;
+}
+.nav-sidebar li a {
+  line-height: normal;
+  font-size: 14px;
+  padding: 10px 10px 10px 11px;
+  color: #a8a8a8;
+  display: block;
+  font-weight: 400;
+  text-decoration: none!important;
+  position: relative;
+}
+.nav-sidebar ul li > a {
+  padding-left: 42px;
+  font-size: 14px;
+  font-weight: 400;
+  outline: 0;
+}
+.nav-sidebar > li > ul:before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: 1;
+  left: 23px;
+  top: 0;
+  bottom: 0;
+  border-left: 1px solid #7A7A7A;
+}
+.nav-sidebar ul li:before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 8px;
+  left: 23px;
+  top: 16px;
+  border-top: 1px solid #7A7A7A;
+  z-index: 1;
+}
+.nav-sidebar > li > ul > li > a,
+.nav-sidebar > li > ul > li > ul > a {
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+.nav-sidebar > li > ul > li.active > a {
+  color: #fff;
+}
 /*
  * Main content
  */
-
 .main {
-  padding: 20px;
-}
-@media (min-width: 768px) {
-  .main {
-    padding-right: 40px;
-    padding-left: 40px;
-  }
+  margin-left: 220px;
 }
 .main .page-header {
-  margin-top: 0;
+  padding-bottom: 9px;
+  margin: 0 0 20px;
+  border-bottom: 1px solid #eee;
+  font-size: 24px;
+  font-weight: 300;
 }
-
-
 /*
  * Placeholder dashboard ideas
  */
-
 .placeholders {
   margin-bottom: 30px;
   text-align: center;

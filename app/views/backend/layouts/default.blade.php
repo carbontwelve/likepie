@@ -52,19 +52,23 @@
 </div>
 
 <div class="container-fluid">
-
     <div class="row">
         <div class="sidebar">
+            <div class="user">
+                <div class="avatar"></div>
+                <a href="#" title="Click to view profile" class="profile-link">Simon Dann</a>
+            </div>
             {{ Menu::handler('main') }}
         </div>
 
         <div id="content" class="main" role="main">
-        @yield('content')
+            @include('backend.partials.breadcrumbs')
+            <div class="page-pane">
+                @yield('content')
+            </div>
         </div>
     </div>
 </div>
-
-
 
 <!-- Bootstrap core JavaScript
 ================================================== -->

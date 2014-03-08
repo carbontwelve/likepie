@@ -1,8 +1,9 @@
-<?php
-    $breadcrumbs = Menu::handler('main')
-        ->breadcrumbs()
-        ->setElement('ol')
-        ->addClass('breadcrumb');
-
-    echo $breadcrumbs;
+<div class="banner">
+    <?php
+        echo Menu::handler('main')
+            ->breadcrumbs()
+            ->setElement('ol')
+            ->addClass('breadcrumb');
+    ?>
+</div>
 

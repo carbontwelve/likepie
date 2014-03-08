@@ -24,20 +24,6 @@ class AdminBaseController extends BaseController {
         // Apply the admin auth filter
         // $this->beforeFilter('admin-auth');
 
-
-        /*
-         Menu::hydrate(function($parentId)
-          {
-             return Page::where('parent_id', $parentId)
-               ->get();
-           },
-           function($children, $page)
-           {
-             $children->add($page->slug, $page->name);
-           });
-
-         */
-
         Menu::handler('main')->hydrate(
             function()
             {
@@ -110,20 +96,6 @@ class AdminBaseController extends BaseController {
             'New article',
             null
         );
-
-        /*
-        Menu::getItemList('main')->find('overview')->add(
-            route('admin.dashboard'),
-            'Stuff',
-            null
-        );
-
-        Menu::getItemList('main')->find('content')->add(
-            route('admin.articles.index'),
-            'Articles',
-            null
-        );
-        */
         parent::__construct();
     }
 

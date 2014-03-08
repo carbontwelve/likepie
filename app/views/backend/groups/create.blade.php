@@ -5,7 +5,7 @@
 <h1 class="page-header">
     Create Group
     <div class="pull-right">
-        <a href="{{ route('admin.groups.index') }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> Back to Groups</a>
+        <a href="{{ route('admin.groups.index') }}" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-arrow-left"></i> Back to Groups</a>
     </div>
 </h1>
 

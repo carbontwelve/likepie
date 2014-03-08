@@ -5,11 +5,9 @@
 <h1 class="page-header">
     Edit Article
     <div class="pull-right">
-        <a href="{{ route('admin.articles.index') }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> Back to Articles</a>
+        <a href="{{ route('admin.articles.index') }}" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-arrow-left"></i> Back to Articles</a>
     </div>
 </h1>
-
-@include('backend.partials.breadcrumbs')
 
 @include('backend.notifications')
 

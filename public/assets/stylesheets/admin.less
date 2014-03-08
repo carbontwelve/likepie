@@ -22,6 +22,42 @@ body {
   border-bottom: 1px solid #eee;
 }
 
+.banner{
+  background: #474544;
+  height: 43px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ccc;
+  position: relative;
+
+  &:after{
+    content: "";
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: block;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+  }
+
+  .breadcrumb{
+    border-radius: 0;
+    background-color: transparent;
+    margin-bottom: 0;
+    padding: 11px 15px;
+
+    a{
+      color: #ccc;
+
+      &:hover{
+        color: #ccc;
+        text-transform: none;
+      }
+    }
+  }
+}
+
+.page-pane{
+  padding:15px;
+}
 
 /*
  * Sidebar
@@ -45,13 +81,45 @@ body {
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
     background-color: #f5f5f5;
-    border-right: 1px solid #eee;
+    border-right: 1px solid #3a3633;
+
+    .user{
+      height: 42px;
+      color: white;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      position: relative;
+
+      &:after{
+        content: "";
+        border-bottom: 1px solid rgba(0,0,0,0.5);
+        display: block;
+        position: absolute;
+        width: 100%;
+      }
+
+      .avatar{
+        background: #000;
+        height: 25px;
+        width: 25px;
+        float: left;
+        margin: 8px 10px;
+      }
+
+      a{
+        padding: 10px 0px;
+        display: block;
+        color: #FFF;
+
+        &:hover{
+          text-decoration: none;
+          color: #a8a8a8;
+        }
+      }
+    }
   }
 }
 
 /* Sidebar navigation */
-.nav-sidebar {
-}
 
 .nav-sidebar > li > a {
   background: transparent;
@@ -150,18 +218,15 @@ body {
 
 .main {
   margin-left: 220px;
-  padding: 20px;
-}
-@media (min-width: 768px) {
-  .main {
-    padding-right: 40px;
-    padding-left: 40px;
+
+  .page-header {
+    padding-bottom: 9px;
+    margin: 0 0 20px;
+    border-bottom: 1px solid #eee;
+    font-size: 24px;
+    font-weight: 300;
   }
 }
-.main .page-header {
-  margin-top: 0;
-}
-
 
 /*
  * Placeholder dashboard ideas

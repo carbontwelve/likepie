@@ -5,7 +5,7 @@
 <h1 class="page-header">
     Create Taxon
     <div class="pull-right">
-        <a href="{{ route('admin.taxons.index') }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i> Back to Taxons</a>
+        <a href="{{ route('admin.taxons.index') }}" class="btn btn-xs btn-default"><i class="glyphicon glyphicon-arrow-left"></i> Back to Taxons</a>
     </div>
 </h1>
 
