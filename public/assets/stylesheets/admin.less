@@ -228,21 +228,60 @@ body {
   }
 }
 
-/*
- * Placeholder dashboard ideas
- */
+/** Dashboard **/
 
-.placeholders {
-  margin-bottom: 30px;
-  text-align: center;
+.widgets{
+  .panel{
+
+    .nav-tabs{
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav > li > a {
+      padding: 5px 15px;
+    }
+
+    .panel-body{
+      padding:10px;
+    }
+
+  }
 }
-.placeholders h4 {
-  margin-bottom: 0;
+
+
+// For rows with no margin
+.row.no-space{
+  margin-left:0;
+  margin-right: 0;
 }
-.placeholder {
-  margin-bottom: 20px;
+
+.no-space>[class*=col-] {
+  margin: 0!important;
+  padding-right: 0;
+  padding-left: 0;
 }
-.placeholder img {
-  display: inline-block;
-  border-radius: 50%;
+
+// Small Progress bar
+.progress-sml{
+  height: 10px;
+  margin-bottom:10px;
+  border-radius: 0;
+
+  .progress-bar{
+    height: 10px;
+  }
+}
+
+.progress-bar-green{
+  background: #eae874;
+}
+
+.progress-bar-brown{
+  background: #94755c;
+}
+
+
+ul.not-a-list{
+  list-style: none;
+  padding-left:0;
 }

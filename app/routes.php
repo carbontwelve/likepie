@@ -25,7 +25,7 @@
 Route::get('/', array('as' => 'home', 'uses' => 'ArticleController@homepage'));
 Route::get('/article/{slug}', array('as' => 'article', 'uses' => 'ArticleController@viewBySlug'));
 
-Route::group(array('prefix' => 'admin'), function(){
+Route::group(array('prefix' => 'admin', 'before' => 'auth'), function(){
 
         Route::get('/', array( 'as' => 'admin.dashboard', 'uses' => 'App\Controllers\Admin\AdminDashboardController@index' ));
 
@@ -45,6 +45,6 @@ Route::group(array('prefix' => 'admin'), function(){
 Route::group(array('prefix' => 'auth'), function(){
 
         Route::get('/login', array('as' => 'auth.login', 'uses' => 'App\Controllers\Auth\UserSessionController@create' ));
-        Route::get('/logout', array('as' => 'auth.login', 'uses' => 'App\Controllers\Auth\UserSessionController@destroy' ));
+        Route::get('/logout', array('as' => 'auth.logout', 'uses' => 'App\Controllers\Auth\UserSessionController@destroy' ));
 
     });
