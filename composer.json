@@ -3,6 +3,16 @@
 	"description": "likepie.net website.",
 	"keywords": ["website", "laravel", "CMS"],
 	"license": "MIT",
+	"repositories":[
+	    {
+	        "type": "vcs",
+	        "url": "https://github.com/machuga/authority"
+	    },
+	    {
+	        "type": "vcs",
+	        "url": "https://github.com/carbontwelve/menu-1"
+	    }
+	],
 	"require": {
 		"laravel/framework": "4.1.*",
 		"graham-campbell/markdown": "1.0.*@RC",
