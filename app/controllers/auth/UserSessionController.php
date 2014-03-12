@@ -1,6 +1,7 @@
 <?php namespace App\Controllers\Auth;
 
 use BaseController;
+use Input;
 use View;
 
 Class UserSessionController extends BaseController
@@ -10,6 +11,13 @@ Class UserSessionController extends BaseController
     {
 
         return View::make('frontend.auth.login');
+
+    }
+
+    public function store()
+    {
+
+        dd(Input::all());
 
     }
 

@@ -1844,8 +1844,29 @@ class Blade extends Illuminate\Support\Facades\Blade{
 	 * @return void
 	 * @static 
 	 */
-	 public static function compile($path){
+	 public static function compile($path = null){
 		 Illuminate\View\Compilers\BladeCompiler::compile($path);
+	 }
+
+	/**
+	 * Get the path currently being compiled.
+	 *
+	 * @return string
+	 * @static 
+	 */
+	 public static function getPath(){
+		return Illuminate\View\Compilers\BladeCompiler::getPath();
+	 }
+
+	/**
+	 * Set the path currently being compiled.
+	 *
+	 * @param string $path
+	 * @return void
+	 * @static 
+	 */
+	 public static function setPath($path){
+		 Illuminate\View\Compilers\BladeCompiler::setPath($path);
 	 }
 
 	/**
@@ -10799,10 +10820,10 @@ class Session extends Illuminate\Support\Facades\Session{
 	 }
 
 	/**
-	 * Put a key / value pair in the session.
+	 * Put a key / value pair or array of key / value pairs in the session.
 	 *
-	 * @param string  $key
-	 * @param mixed   $value
+	 * @param string|array  $key
+	 * @param mixed|null  	 $value
 	 * @return void
 	 * @static 
 	 */

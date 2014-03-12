@@ -45,6 +45,7 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function(){
 Route::group(array('prefix' => 'auth'), function(){
 
         Route::get('/login', array('as' => 'auth.login', 'uses' => 'App\Controllers\Auth\UserSessionController@create' ));
+        Route::post('/login', array('as' => 'auth.login.post', 'uses' => 'App\Controllers\Auth\UserSessionController@store' ));
         Route::get('/logout', array('as' => 'auth.logout', 'uses' => 'App\Controllers\Auth\UserSessionController@destroy' ));
 
     });
