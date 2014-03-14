@@ -41,4 +41,22 @@ class BaseController extends Controller {
         return Redirect::route($route, $parameters);
     }
 
+    /**
+     * Helper function to redirect to an intended route or if one does not
+     * exist a viable default.
+     * @param string $else
+     * @param array $parameters
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    protected function redirectToIntended($else = '', $parameters = [])
+    {
+        if ( ! empty($else) )
+        {
+            $redirectElse = route($else, $parameters);
+        }else{
+            $redirectElse = route('home');
+        }
+
+        return Redirect::to(Session::get('url.intended', $redirectElse));
+    }
 }

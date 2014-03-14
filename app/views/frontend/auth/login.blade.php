@@ -69,12 +69,21 @@
 
     {{ Form::model( new \Likepie\Accounts\Users\User(), [ 'route' => 'auth.login.post', 'class' => 'form-signin', 'role' => 'form' ] ) }}
         <h2 class="form-signin-heading">Please sign in</h2>
+        @if($error = Session::get('errors'))
+        <div class="alert alert-danger">
+            There was something wrong with the input you provided.
+        </div>
+        @endif
+        @if($error = Session::get('error'))
+        <div class="alert alert-danger">
+            {{ $error }}
+        </div>
+        @endif
         {{ Form::email('email', null, [ 'type' => 'email', 'class' => 'form-control', 'placeholder' => 'Email address', 'required', 'autofocus' ]) }}
-        {{-- <input type="email" class="form-control" placeholder="Email address" required autofocus> --}}
         {{ Form::password('password', [ 'type' => 'password', 'class' => 'form-control', 'placeholder' => 'Password', 'required' ]) }}
-        {{-- <input type="password" class="form-control" placeholder="Password" required> --}}
         <label class="checkbox">
-            <input type="checkbox" value="remember-me"> Remember me
+            {{ Form::checkbox('remember-me', '1') }}
+            Remember me
         </label>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
     {{ Form::close() }}
