@@ -11,7 +11,8 @@ class AdminDashboardController extends AdminBaseController {
     public function index()
     {
 
-        return View::make('backend.dashboard');
+        return View::make('backend.dashboard')
+            ->with('user', $this->user);
 
     }
 

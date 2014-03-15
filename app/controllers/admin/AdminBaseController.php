@@ -3,8 +3,10 @@
 use Illuminate\Support\Collection;
 use BaseController;
 use stdClass;
+use Sentry;
 use Input;
 use Menu;
+use View;
 
 
 
@@ -19,8 +21,16 @@ class AdminBaseController extends BaseController {
      */
     protected $menu;
 
+    /**
+     * The logged in user
+     * @var \Cartalyst\Sentry\Users\UserInterface|null
+     */
+    protected $user = null;
+
     public function __construct()
     {
+        $this->user = Sentry::getUser();
+
         // Apply the admin auth filter
         // $this->beforeFilter('admin-auth');
 
@@ -96,6 +106,12 @@ class AdminBaseController extends BaseController {
             'New article',
             null
         );
+
+        View::composer('backend.partials.profile', function($view)
+            {
+                $view->with('user', Sentry::getUser());
+            });
+
         parent::__construct();
     }
 
@@ -169,9 +185,13 @@ class AdminBaseController extends BaseController {
         $permissions = $decodedPermissions;
     }
 
+    /**
+     * Update Permissions GET params
+     *
+     * @param array $default
+     */
     protected function setPermissionsFromInput( array $default = [] )
     {
-        // Update Permissions GET params
         $permissions = Input::get('permissions', $default);
         $this->decodePermissions($permissions);
         app('request')->request->set('permissions', $permissions);

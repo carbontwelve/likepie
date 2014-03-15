@@ -19,15 +19,12 @@ Class UserSessionController extends BaseController
 
     public function __construct( AuthForm $authForm )
     {
-
         $this->authForm = $authForm;
     }
 
     public function create()
     {
-
         return View::make('frontend.auth.login');
-
     }
 
     public function store()

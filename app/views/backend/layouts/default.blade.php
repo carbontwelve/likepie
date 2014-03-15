@@ -54,10 +54,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="sidebar">
-            <div class="user">
-                <div class="avatar"></div>
-                <a href="#" title="Click to view profile" class="profile-link">Simon Dann</a>
-            </div>
+            @include('backend.partials.profile')
             {{ Menu::handler('main') }}
         </div>
 
