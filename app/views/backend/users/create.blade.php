@@ -11,7 +11,7 @@
 
 @include('backend.notifications')
 
-<?php echo Form::model(new \Likepie\Accounts\Users\User, array('route' => array('admin.users.store'))); ?>
+<?php echo Form::model($user, array('route' => array('admin.users.store'), 'autocomplete' => 'off')); ?>
 
 @include('backend.users._form')
 

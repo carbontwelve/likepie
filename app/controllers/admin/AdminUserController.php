@@ -51,6 +51,7 @@ class AdminUserController extends AdminBaseController {
     public function create()
     {
         return View::make('backend.users.create')
+            ->with('user', new \Likepie\Accounts\Users\User )
             ->with('groups', $this->groups->createModel()->get()->lists('name', 'id'))
             ->with('permissions', $this->permissions)
             ->with('selectedPermissions', Input::old('permissions', array( 'superuser' => -1 )));
@@ -80,7 +81,6 @@ class AdminUserController extends AdminBaseController {
 
     public function edit($id = null)
     {
-
         $user = $this->sentryUserRepository->findById($id);
 
         if (is_null($user))

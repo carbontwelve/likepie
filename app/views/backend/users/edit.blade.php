@@ -11,7 +11,7 @@
 
 @include('backend.notifications')
 
-<?php echo Form::model($user, array('method' => 'PATCH', 'route' => array('admin.users.update', 'id' => $user->id))); ?>
+<?php echo Form::model($user, array('method' => 'PATCH', 'route' => array('admin.users.update', 'id' => $user->id), 'autocomplete' => 'off')); ?>
 
 @include('backend.users._form')
 

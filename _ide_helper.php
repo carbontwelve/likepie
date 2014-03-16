@@ -5644,11 +5644,12 @@ class HTML extends Illuminate\Support\Facades\HTML{
 	 *
 	 * @param string  $url
 	 * @param array   $attributes
+	 * @param bool    $secure
 	 * @return string
 	 * @static 
 	 */
-	 public static function script($url, $attributes = array()){
-		return Illuminate\Html\HtmlBuilder::script($url, $attributes);
+	 public static function script($url, $attributes = array(), $secure = null){
+		return Illuminate\Html\HtmlBuilder::script($url, $attributes, $secure);
 	 }
 
 	/**
@@ -5656,11 +5657,12 @@ class HTML extends Illuminate\Support\Facades\HTML{
 	 *
 	 * @param string  $url
 	 * @param array   $attributes
+	 * @param bool    $secure
 	 * @return string
 	 * @static 
 	 */
-	 public static function style($url, $attributes = array()){
-		return Illuminate\Html\HtmlBuilder::style($url, $attributes);
+	 public static function style($url, $attributes = array(), $secure = null){
+		return Illuminate\Html\HtmlBuilder::style($url, $attributes, $secure);
 	 }
 
 	/**
@@ -5669,11 +5671,12 @@ class HTML extends Illuminate\Support\Facades\HTML{
 	 * @param string  $url
 	 * @param string  $alt
 	 * @param array   $attributes
+	 * @param bool    $secure
 	 * @return string
 	 * @static 
 	 */
-	 public static function image($url, $alt = null, $attributes = array()){
-		return Illuminate\Html\HtmlBuilder::image($url, $alt, $attributes);
+	 public static function image($url, $alt = null, $attributes = array(), $secure = null){
+		return Illuminate\Html\HtmlBuilder::image($url, $alt, $attributes, $secure);
 	 }
 
 	/**

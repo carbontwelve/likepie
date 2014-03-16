@@ -23,6 +23,38 @@ class UserPresenter extends BasePresenter
 
     }
 
+    public function isActivated()
+    {
+        if (is_null($this->resource->activation))
+        {
+            return 'No';
+        }
+
+        if ($this->resource->activation->completed < 1)
+        {
+            return 'No';
+        }
+
+        return 'Yes';
+    }
+
+    public function activatedOn()
+    {
+        if (is_null($this->resource->activation) || ( ! is_null($this->resource->activation) && $this->resource->activation->completed < 1 ) )
+        {
+            return 'Never';
+        }
+
+        return $this->resource->activation->completed_at;
+    }
+
+    public function loggedInOn()
+    {
+        if (is_null($this->resource->last_login)){ return 'Never'; }
+
+        return $this->resource->last_login;
+    }
+
     /**
      * Returns the users gravatar image url generated from email
      * @return string
