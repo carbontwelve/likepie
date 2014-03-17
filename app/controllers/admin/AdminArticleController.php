@@ -56,6 +56,8 @@ class AdminArticleController extends AdminBaseController {
 
     public function index()
     {
+        $stats     = $this->model->stats();
+
         $sortBy    = \Request::get('sortBy');
         $direction = \Request::get('direction');
 

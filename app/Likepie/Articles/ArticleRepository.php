@@ -1,6 +1,7 @@
 <?php namespace Likepie\Articles;
 
 use Likepie\Core\EloquentRepository;
+use DB;
 
 class ArticleRepository extends EloquentRepository
 {
@@ -66,6 +67,36 @@ class ArticleRepository extends EloquentRepository
                 //$q->where('content', 'like', 'foo%');
 
             })->get();
+    }
+
+    /**
+     * @return array
+     */
+    public function stats($ignore = ['revision'])
+    {
+        $stats = [];
+
+        foreach ($this->model->getStatusEnumValues() as $stat)
+        {
+            if ( ! in_array($stat, $ignore))
+            {
+                $stats[$stat] = 0;
+            }
+        }
+
+        $rows =  DB::select("SELECT COUNT(`id`) as `count`, `status` FROM `{$this->model->getTable()}` GROUP BY `status`");
+
+        if (count($rows) < 1){ return $stats; }
+
+        foreach ($rows as $row)
+        {
+            if (isset($stats[$row->status]))
+            {
+                $stats[$row->status] = $row->count;
+            }
+        }
+
+        return $stats;
     }
 
     public function getForm()
