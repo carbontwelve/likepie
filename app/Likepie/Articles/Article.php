@@ -116,7 +116,7 @@ class Article extends Ardent
 
     public function getTags()
     {
-
+        return $this->tags();
     }
 
     public function hasTag($tagId)
