@@ -70,6 +70,7 @@ class ArticleRepository extends EloquentRepository
     }
 
     /**
+     * @param array $ignore
      * @return array
      */
     public function stats($ignore = ['revision'])

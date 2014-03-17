@@ -57,14 +57,13 @@ class AdminArticleController extends AdminBaseController {
     public function index()
     {
         $stats     = $this->model->stats();
-
         $sortBy    = \Request::get('sortBy');
         $direction = \Request::get('direction');
-
         $articles  = $this->model->getPaginated(compact('sortBy', 'direction'));
 
         return View::make('backend.articles.index')
-            ->with('articles', $articles);
+            ->with('articles', $articles)
+            ->with('stats', $stats);
     }
 
     public function create()

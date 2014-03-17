@@ -74,6 +74,7 @@
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src="<?php echo asset('assets/javascripts/vendor/holder.js');?>"></script>
 <script src="<?php echo asset('assets/javascripts/vendor/tags/jquery.tagsinput.js');?>"></script>
+<script src="<?php echo asset('assets/javascripts/vendor/d3/d3.min.js');?>"></script>
 @yield('scripts')
 </body>
 </html>
