@@ -12,5 +12,4 @@ class Tag extends Taxon
     {
         return $this->morphedByMany('Likepie\Articles\Article', 'taggable');
     }
-
 }

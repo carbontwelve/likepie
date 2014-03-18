@@ -15,7 +15,7 @@ class TagRepository extends EloquentRepository
         return new TagForm();
     }
 
-    public function findByCommaInput ( $input )
+    public function findByCommaInput ( $input, $user_id = null )
     {
         if (strlen($input) < 1){ return null; }
 
@@ -35,13 +35,12 @@ class TagRepository extends EloquentRepository
             $tagsInDatabase = $tags->lists('name');
             $tagCollection  = $tags;
             $input = array_diff( $input, $tagsInDatabase );
-
         }
 
         foreach ($input as $inputTag)
         {
             $record = $this->getNew([ 'name' => $inputTag ]);
-            $record->author_id = 1;
+            $record->author_id = $user_id;
             $record->save();
 
             $tagCollection->add($record);

@@ -75,7 +75,6 @@ class AdminArticleController extends AdminBaseController {
 
     public function store()
     {
-
         $form = $this->model->getForm();
 
         if ( ! $form->isValid()) {
@@ -83,19 +82,17 @@ class AdminArticleController extends AdminBaseController {
         }
 
         $article = $this->model->getNew(Input::only('title', 'content', 'status'));
-        $article->author_id = 1;
-        //$article->author_id = Auth::user()->id;
+        $article->author_id = $this->user->id;
 
         if ( ! $article->save()) {
             return $this->onFormError();
         }
 
         // Store tags
-        $tags = $this->tags->findByCommaInput(Input::get('tags'));
+        $tags = $this->tags->findByCommaInput(Input::get('tags'), $this->user->id);
         $article->tags()->sync($tags->lists('id'));
 
         return $this->onFormSuccess($article);
-
     }
 
     public function edit($id = null)
@@ -130,12 +127,11 @@ class AdminArticleController extends AdminBaseController {
         }
 
         // Store tags
-        $tags = $this->tags->findByCommaInput(Input::get('tags'));
+        $tags = $this->tags->findByCommaInput(Input::get('tags'), $this->user->id);
         $article->tags()->sync($tags->lists('id'));
 
         return $this->redirectToRoute('admin.articles.edit', ['id' => $article->id])
             ->with('success', 'Article has been updated successfully');
-
     }
 
     public function destroy( $id = null)
