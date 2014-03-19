@@ -73,12 +73,13 @@ class Article extends Ardent
         return $this->belongsTo('Likepie\Accounts\Users\User', 'author_id');
     }
 
+    /**
+     * Article has many tags relationship
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     */
     public function tags()
     {
-
-        return $this->morphToMany('Likepie\Classification\Tag', 'classifiable', 'taxons_relationship');
-
-        //return $this->morphToMany('Likepie\Classification\Tag', 'taggable');
+        return $this->morphToMany('Likepie\Classification\Tag', 'classifiable', 'taxons_relationship', 'classifiable_id', 'taxon_id');
     }
 
     public function categories()
