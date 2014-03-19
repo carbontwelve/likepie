@@ -8,4 +8,8 @@ class Category extends Taxon
 
     public $presenter = 'Likepie\Classification\CategoryPresenter';
 
+    public function articles()
+    {
+        return $this->morphedByMany('Likepie\Articles\Article', 'taxons_relationship', 'classifiable_id', 'taxon_id');
+    }
 }
