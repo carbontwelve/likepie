@@ -49,10 +49,17 @@
             <div class="panel-body">
                 <div class="form-group">
                     @foreach($categories as $id => $category)
-                    {{ Form::label('categories['.$id.']', $category) }}
-                    {{ Form::checkbox('categories['.$id.']', $id); }}
+                    <div class="checkbox">
+                        <label>
+                            {{ Form::checkbox('categories['.$id.']', $id); }}
+                            {{ $category }}
+                        </label>
+                    </div>
                     @endforeach
                 </div>
+
+                <a href="#"><span class="glyphicon glyphicon-plus"></span> Add New Category</a>
+
             </div>
         </div>
 

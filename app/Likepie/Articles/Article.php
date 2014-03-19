@@ -79,7 +79,8 @@ class Article extends Ardent
      */
     public function tags()
     {
-        return $this->morphToMany('Likepie\Classification\Tag', 'classifiable', 'taxons_relationship', 'classifiable_id', 'taxon_id');
+        return $this->morphToMany('Likepie\Classification\Tag', 'classifiable', 'taxons_relationship', 'classifiable_id', 'taxon_id')
+            ->where('taxonomy', \Likepie\Classification\Tag::TAXONOMY_NAME);
     }
 
     /**
@@ -88,7 +89,8 @@ class Article extends Ardent
      */
     public function categories()
     {
-        return $this->morphToMany('Likepie\Classification\Category', 'classifiable', 'taxons_relationship', 'classifiable_id', 'taxon_id');
+        return $this->morphToMany('Likepie\Classification\Category', 'classifiable', 'taxons_relationship', 'classifiable_id', 'taxon_id')
+            ->where('taxonomy', \Likepie\Classification\Category::TAXONOMY_NAME);
     }
 
     /**

@@ -10,6 +10,7 @@ class Tag extends Taxon
 
     public function articles()
     {
-        return $this->morphedByMany('Likepie\Articles\Article', 'taxons_relationship', 'classifiable_id', 'taxon_id');
+        return $this->morphedByMany('Likepie\Articles\Article', 'taxons_relationship', 'classifiable_id', 'taxon_id')
+            ->where('taxonomy', static::TAXONOMY_NAME);
     }
 }

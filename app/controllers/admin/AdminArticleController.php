@@ -8,6 +8,7 @@ use Likepie\Classification\Taxons\TaxonRepository;
 use Likepie\Articles\ArticleRepository;
 use Likepie\Articles\ArticleCreator;
 use Input;
+use phpDocumentor\Reflection\DocBlock\Tag;
 use View;
 
 /**
@@ -144,7 +145,15 @@ class AdminArticleController extends AdminBaseController {
 
         // Store tags
         $tags = $this->tags->findByCommaInput(Input::get('tags'), $this->user->id);
+
         $article->tags()->sync($tags->lists('id'));
+
+        //dd($article->tags());
+
+        // Store Categories
+        //$r = $article->categories()->sync(Input::get('categories', []));
+
+        //dd($r);
 
         return $this->redirectToRoute('admin.articles.edit', ['id' => $article->id])
             ->with('success', $successMessage);
