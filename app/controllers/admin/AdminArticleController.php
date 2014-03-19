@@ -81,7 +81,14 @@ class AdminArticleController extends AdminBaseController {
             return $this->onValidationError($form->getErrors());
         }
 
-        $article = $this->model->getNew(Input::only('title', 'content', 'status'));
+        $data    = Input::only( 'title', 'content', 'status' );
+
+        if (Input::has('publish_this') && Input::get('publish_this') === '1' )
+        {
+            $data['status'] = 'published';
+        }
+
+        $article = $this->model->getNew($data);
         $article->author_id = $this->user->id;
 
         if ( ! $article->save()) {
@@ -119,8 +126,17 @@ class AdminArticleController extends AdminBaseController {
             return $this->redirectBack(['errors' => $form->getErrors()]);
         }
 
-        $article = $this->model->findById($id);
-        $article->fill( Input::only( 'title', 'content', 'status' ) );
+        $successMessage = 'Article has been updated successfully';
+        $article        = $this->model->findById($id);
+        $data           = Input::only( 'title', 'content', 'status' );
+
+        if (Input::has('publish_this') && Input::get('publish_this') === '1' )
+        {
+            $data['status'] = 'published';
+            $successMessage = 'Article has been published successfully';
+        }
+
+        $article->fill( $data );
 
         if ( ! $article->save()) {
             return $this->redirectBack(['error' => 'There was a problem saving that form']);
@@ -131,7 +147,7 @@ class AdminArticleController extends AdminBaseController {
         $article->tags()->sync($tags->lists('id'));
 
         return $this->redirectToRoute('admin.articles.edit', ['id' => $article->id])
-            ->with('success', 'Article has been updated successfully');
+            ->with('success', $successMessage);
     }
 
     public function destroy( $id = null)
