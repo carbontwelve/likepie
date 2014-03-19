@@ -75,7 +75,10 @@ class Article extends Ardent
 
     public function tags()
     {
-        return $this->morphToMany('Likepie\Classification\Tag', 'taggable');
+
+        return $this->morphToMany('Likepie\Classification\Tag', 'classifiable', 'taxons_relationship');
+
+        //return $this->morphToMany('Likepie\Classification\Tag', 'taggable');
     }
 
     public function categories()
