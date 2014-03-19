@@ -52,9 +52,14 @@ Class UserSessionController extends BaseController
         }
     }
 
+    /**
+     * Logs out the currently logged in user and redirects to home.
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy()
     {
-
+        Sentry::logout();
+        return Redirect::to('/');
     }
 
 }
