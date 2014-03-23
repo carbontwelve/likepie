@@ -71,6 +71,7 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="<?php echo asset('assets/javascripts/vendor/jquery-ui.min.js');?>"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src="<?php echo asset('assets/javascripts/vendor/holder.js');?>"></script>
 <script src="<?php echo asset('assets/javascripts/vendor/tags/jquery.tagsinput.js');?>"></script>
